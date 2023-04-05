@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +128,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="KeyVal.cpp" />
+    <ClCompile Include="OpLineLables.cpp" />
     <ClCompile Include="LMC.cpp" />
+    <ClCompile Include="untrusted_SymbolsData.cpp" />
+    <ClCompile Include="ValLable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="untrusted_SymbolsData.h" />
+    <ClInclude Include="Using.h" />
+    <ClInclude Include="KeyVal.h" />
+    <ClInclude Include="OpLineLables.h" />
+    <ClInclude Include="ValLable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
