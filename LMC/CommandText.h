@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <optional>
+#include "Using.h"
 
 namespace experis
 {
@@ -15,14 +17,16 @@ public:
 	CommandText(const CommandText& a_other) = delete;
 	CommandText& operator=(const CommandText& a_other) = delete;
 	~CommandText(); 
-	
+
+	std::optional<Key> GetLable();	
+	std::optional<Key> GetAddress();	
 private:
 	std::vector<std::string> Split(const std::string& a_toSplit, const char a_howSplit);
 	void build(const std::string& a_command);
 
-	std::string m_lable;
-	std::string m_opcode;
-	std::string m_address;
+	Key m_lable;
+	Key m_opcode;
+	Key m_address;
 };
 
 }

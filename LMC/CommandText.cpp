@@ -18,6 +18,24 @@ CommandText::~CommandText()
 {
 }
 
+std::optional<Key> CommandText::GetLable()
+{
+    if (this->m_lable.empty())
+    {
+        return std::optional<Key>{};
+    }
+    return this->m_lable;
+}
+
+std::optional<Key> CommandText::GetAddress()
+{
+    if (this->m_address.empty())
+    {
+        return std::optional<Key>{};
+    }
+    return this->m_address;
+}
+
 std::vector<std::string> CommandText::Split(const std::string& a_toSplit, const char a_howSplit)
 {
     std::vector<std::string> partsOfString{};

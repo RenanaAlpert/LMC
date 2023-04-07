@@ -18,6 +18,35 @@
     <ClCompile Include="LMC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="KeyVal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpLineLables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ValLable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="untrusted_SymbolsData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KeyVal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpLineLables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ValLable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Using.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="untrusted_SymbolsData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClCompile Include="Assembly.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
