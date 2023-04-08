@@ -1,9 +1,8 @@
-// LMC.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <optional>
 #include "from_trusted_Symbols.h"
+
+
 
 int main()
 {

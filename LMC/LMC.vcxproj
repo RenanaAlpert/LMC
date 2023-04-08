@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +132,8 @@
     <ClCompile Include="Cmds.cpp" />
     <ClCompile Include="CmdType.cpp" />
     <ClCompile Include="from_trusted_Symbols.cpp" />
+    <ClCompile Include="Commands.cpp" />
+    <ClCompile Include="CommandText.cpp" />
     <ClCompile Include="KeyVal.cpp" />
     <ClCompile Include="LMC.cpp" />
     <ClCompile Include="SymbolsValidator.cpp" />
@@ -144,8 +146,13 @@
     <ClInclude Include="from_trusted_Symbols.h" />
     <ClInclude Include="SymbolsValidator.h" />
     <ClInclude Include="SymbolTableCell.h" />
+    <ClInclude Include="Commands.h" />
+    <ClInclude Include="untrusted_SymbolsData.h" />
     <ClInclude Include="Using.h" />
     <ClInclude Include="KeyVal.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CommandText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
