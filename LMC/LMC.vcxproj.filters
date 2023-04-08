@@ -21,13 +21,22 @@
     <ClCompile Include="KeyVal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OpLineLables.cpp">
+    <ClCompile Include="SymbolsValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ValLable.cpp">
+    <ClCompile Include="Cmds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="untrusted_SymbolsData.cpp">
+    <ClCompile Include="Cmd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="from_trusted_Symbols.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTableCell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CmdType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,16 +44,25 @@
     <ClInclude Include="KeyVal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OpLineLables.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ValLable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Using.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="untrusted_SymbolsData.h">
+    <ClInclude Include="CmdType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolsValidator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cmds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="from_trusted_Symbols.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolTableCell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
