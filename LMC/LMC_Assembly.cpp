@@ -1,6 +1,8 @@
 #include <string>
 #include "LMC_Assembly.h"
 #include "ExtentionsHandler.h"
+#include "from_trusted_Symbols.h"
+#include "Commands.h"
 
 namespace experis
 {
@@ -11,7 +13,7 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 	: m_argc{a_argc}
 	, m_argv{a_argv}
 {
-	if(true)//IsValidArguments() &&  && valid sym tbl && valid machine code
+	if(true)//IsValidArguments() //IsCodeFileExists// && valid sym tbl && valid machine code
 	{
 		trusted_CreateSymbolFile();
 		//CreateMachineCodeFile();
@@ -27,13 +29,15 @@ LMC_Assembly::~LMC_Assembly()
 
 void LMC_Assembly::trusted_CreateSymbolFile() const
 {
-	switch (m_argc)
+	switch (this->m_argc)
 	{
 	case(2):
 	{
-		const std::string codeFilePath =* (m_argv + 1);
+		const std::string codeFilePath = *(this->m_argv + 1);
 		const std::string newExtention = ".sym";
 		const std::string symbolsFilePath = ChangeExtention(codeFilePath, newExtention);
+		/*Commands commands{};
+		SymbolsToFile(symbolsFilePath, from_trusted_Symbols());*/
 	}
 	default:
 		break;
@@ -44,27 +48,40 @@ void LMC_Assembly::trusted_CreateSymbolFile() const
 //{
 //}
 
-//IsValidArguments() 
-//IsValidSourceFile())
+const bool LMC_Assembly::IsValidArguments() const //TODO think again
+{
+	switch (this->m_argc)
+	{
+	case 2:
+	{
+		return true;
+	}
+	case 3:
+	{
+		return *(this->m_argv + 2) == std::string("/bin");
+	}
+	case 4:
+	{
+		return true;
+	}
+	case 5:
+	{
+		return *(this->m_argv + 2) == std::string("/bin");
+	}
+	default:
+		return false; //TODO throw
+	}
+}
+
+
+//const bool LMC_Assembly::IsCodeFileExists() const //TODO think again
+//{
+//}
+
+
+
 
 }//experis
 
 
 
-
-//void LMC_Assembly::SymbolsToFile( const std::string& a_outFileName, const Cmds& a_cmds)//,const bool a_isPrintToScreen, const bool a_isPrintToFile, const int a_int)
-//{
-//	
-//	std::fstream fs{a_outFileName, std::ios::app};
-//	if (! fs.is_open())
-//	{
-//		std::cout << "Failed to open file - " << a_filename << " for appending!!!" << std::endl;
-//	}
-//	else
-//	{
-//		fs << a_int;
-//		fs.clear();
-//		fs.close();
-//	}
-//	
-//}

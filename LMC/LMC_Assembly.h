@@ -15,9 +15,9 @@ public:
 
 private:
 	void trusted_CreateSymbolFile() const; //TODO asset sucsess
+	const bool IsValidArguments() const;
+	const bool IsCodeFileExists() const;
 	//void CreateMachineCodeFile() const; //TODO asset sucsess
-	//IsValidArguments() 
-	//IsValidSourceFile())
 
 	const int m_argc;
 	const char **m_argv;
