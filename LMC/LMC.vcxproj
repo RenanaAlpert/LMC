@@ -137,6 +137,7 @@
     <ClCompile Include="ValLable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CmdTyp.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="untrusted_SymbolsData.h" />
     <ClInclude Include="Using.h" />

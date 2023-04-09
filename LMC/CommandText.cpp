@@ -22,6 +22,15 @@ std::optional<Key> CommandText::GetLable()
     return this->m_lable;
 }
 
+std::optional<Key> CommandText::GetOpcode()
+{
+    if (this->m_opcode.empty())
+    {
+        return std::optional<Key>{};
+    }
+    return this->m_opcode;
+}
+
 std::optional<Key> CommandText::GetAddress()
 {
     if (this->m_address.empty())

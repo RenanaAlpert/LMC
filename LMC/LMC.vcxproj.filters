@@ -30,6 +30,9 @@
     <ClCompile Include="untrusted_SymbolsData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Commands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyVal.h">
@@ -47,17 +50,17 @@
     <ClInclude Include="untrusted_SymbolsData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClCompile Include="Assembly.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CommandText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Assembly.h">
+    <ClInclude Include="Commands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CmdTyp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="CommandText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
