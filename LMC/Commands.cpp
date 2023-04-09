@@ -40,7 +40,7 @@ std::optional<Key> Commands::GetAddress(size_t a_index)
 	return this->m_commandsList.at(a_index)->GetAddress();
 }
 
-experis::CmdType Commands::GetType(size_t a_index)
+CmdType Commands::GetType(size_t a_index) //TODO better switch
 {
 	return this->m_commandsList.at(a_index)->GetOpcode() == "DAT" ? CmdType::DATA : CmdType::TXT;
 }
