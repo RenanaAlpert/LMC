@@ -4,7 +4,7 @@
 
 
 
-int main()
+int main(int argc, const char **argv)
 {
 	experis::Cmds cmds;
 
@@ -84,6 +84,9 @@ int main()
 	{
 		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
 	}
+
+	const std::string& outFileName = "First.sym";
+	experis::SymbolsToFile(outFileName, symbolTable);
 
 
 

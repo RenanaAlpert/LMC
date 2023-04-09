@@ -31,6 +31,8 @@ private:
 
 std::ostream& operator<<(std::ostream& a_os, const from_trusted_Symbols& a_from_trusted_Symbols); //TODO Better than method?
 
+void SymbolsToFile(const std::string& a_outFileName, const from_trusted_Symbols& a_from_trusted_Symbols);
+
 }//experis
 
 

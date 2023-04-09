@@ -1,4 +1,6 @@
 #include <cassert>
+#include <fstream>
+#include <iostream>
 #include "from_trusted_Symbols.h"
 
 namespace experis
@@ -75,6 +77,23 @@ std::ostream& operator<<(std::ostream& a_os, const from_trusted_Symbols& a_from_
 	}
 	a_os << std::endl;
 	return a_os;
+}
+
+void SymbolsToFile(const std::string& a_outFileName, const from_trusted_Symbols& a_from_trusted_Symbols)
+{
+	
+	std::fstream fs{a_outFileName, std::ios::out};
+	if (!fs.is_open())
+	{
+		std::cout << "Failed to open file - " << a_outFileName << " for writing!!!" << std::endl; //TODO
+	}
+	else
+	{
+		fs << a_from_trusted_Symbols;
+		fs.clear();
+		fs.close();
+		std::cout << "Succedded to write symbols to file - " << a_outFileName << std::endl;
+	}
 }
 
 }//experis

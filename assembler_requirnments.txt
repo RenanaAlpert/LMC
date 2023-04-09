@@ -1,0 +1,53 @@
+(1) Write an Assembler that takes a file that contains LMC assembly code and translate it into *two* files:
+       - the first file is a machine code file (a file of numbers). This file can be either in binary format or in text format.
+       - the second file is a symbols file for the code (as in the assignment for the disassembler). This file will be in a textual format.
+
+The command line arguments for the assembler will be *either*:
+<codeFilePath>                                                  - this gives the name of the code file to compile
+                                                                             - the generated machine code file will have the same path and name but an
+                                                                               extension/suffix of .lmc
+                                                                             - the generated symbols file will have the same path and name but an
+                                                                               extension/suffix of .sym
+--or--
+<codeFilePath> /bin                                          - this gives the name of the code file to compile and asks that the output is a BINARY file
+                                                                             - the generated BINARY machine code file will have the same path and name but an
+                                                                               extension/suffix of .bin
+                                                                             - the generated symbols file will have the same path and name but an
+                                                                               extension/suffix of .sym
+--or--
+<codeFilePath> <outMachineCodeFilePath> <outSymbolsFilePath>
+                                                                             - the generated machine code file will have the path/name/extension as 
+                                                                               specified in outMachineCodeFilePath
+                                                                             - the generated symbols file will have the path/name/extension as 
+                                                                               specified in outMachineCodeFilePath
+--or-- 
+<codeFilePath> /bin <outMachineCodeFilePath> <outSymbolsFilePath>
+                                                                             - the generated BINARY machine code file will have the path/name/extension as 
+                                                                               specified in outMachineCodeFilePath
+                                                                             - the generated symbols file will have the path/name/extension as 
+                                                                               specified in outMachineCodeFilePath
+
+
+
+
+
+<codeFilePath>  -> .....  ___ . asm
+machine code ->.......... ___ . lmc //text
+symbols file ->.......... ___ . sym //text
+
+
+<codeFilePath> /bin  -> ..___ . asm
+machine code ->.......... ___ . bin //bin
+symbols file ->.......... ___ . sym //text
+
+<codeFilePath> <outMachineCodeFilePath> <outSymbolsFilePath>
+
+<codeFilePath> /bin <outMachineCodeFilePath> <outSymbolsFilePath>
+
+
+
+optional string RemoveExtention(<codeFilePath>);
+string AddExtention(<codeFilePath no extn>, extention);
+optional string ChangeExtention(<codeFilePath>, new_extention);
+
+SymbolTable2File();
