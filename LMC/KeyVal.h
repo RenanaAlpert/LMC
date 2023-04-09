@@ -25,8 +25,8 @@ private:
 	Val m_val;
 };
 
-const bool operator==(const KeyVal& a_keyVal1, const KeyVal& a_keyVal2);
-std::ostream& operator<<(std::ostream& a_os, const KeyVal& a_keyVal);
+//const bool operator==(const KeyVal& a_keyVal1, const KeyVal& a_keyVal2);
+//std::ostream& operator<<(std::ostream& a_os, const KeyVal& a_keyVal);
 
 }//experis
 

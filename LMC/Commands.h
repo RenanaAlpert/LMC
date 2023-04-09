@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "CommandText.h"
-#include "CmdTyp.h"
+#include "CmdType.h"
 
 namespace experis
 {
@@ -19,7 +19,7 @@ public:
 	std::optional<Key> GetLable(size_t a_index);
 	std::optional<Key> GetOpcode(size_t a_index);
 	std::optional<Key> GetAddress(size_t a_index);
-	experis::CmdType GetType(size_t a_index);
+	CmdType GetType(size_t a_index);
 	size_t Size();
 
 private:

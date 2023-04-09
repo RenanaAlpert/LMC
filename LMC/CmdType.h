@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 
 namespace experis
 {
@@ -14,3 +13,4 @@ std::ostream& operator<<(std::ostream& a_os, const CmdType& a_cmdType);
 
 
 }//experis
+

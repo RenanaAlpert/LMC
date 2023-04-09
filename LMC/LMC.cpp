@@ -1,103 +1,147 @@
 #include <iostream>
-#include "untrusted_SymbolsData.h"
+#include <optional>
+#include "from_trusted_Symbols.h"
 
 
 
-int main()
+int main(int argc, const char **argv)
 {
-	experis::untrusted_SymbolsData untrusted_symbolsData{};
+	experis::Cmds cmds;
 
-	experis::ValLable valLable0{std::string("space"), 0};
-	experis::OpLineLables opLineLables0{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{valLable0}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables0);
+	experis::Cmd cmd0(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"space"});
+	experis::Cmd cmd1(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"char"});
+	experis::Cmd cmd2(experis::CmdType::TXT, std::optional<std::string>{"loop"}, std::optional<std::string>{"char"});
+	experis::Cmd cmd3(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{});
+	experis::Cmd cmd4(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"one"});
+	experis::Cmd cmd5(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"char"});
+	experis::Cmd cmd6(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"max"});
+	experis::Cmd cmd7(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"end"});
+	experis::Cmd cmd8(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"loop"});
+	experis::Cmd cmd9(experis::CmdType::TXT, std::optional<std::string>{"end"}, std::optional<std::string>{});
+	experis::Cmd cmd10(experis::CmdType::DATA, std::optional<std::string>{"space"}, std::optional<std::string>{});
+	experis::Cmd cmd11(experis::CmdType::DATA, std::optional<std::string>{"one"}, std::optional<std::string>{});
+	experis::Cmd cmd12(experis::CmdType::DATA, std::optional<std::string>{"max"}, std::optional<std::string>{});
+	experis::Cmd cmd13(experis::CmdType::DATA, std::optional<std::string>{"char"}, std::optional<std::string>{});
 
-	experis::ValLable valLable1{std::string("char"), 1};
-	experis::OpLineLables opLineLables1{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{valLable1}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables1);
+	cmds.AddCmd(cmd0);
+	cmds.AddCmd(cmd1);
+	cmds.AddCmd(cmd2);
+	cmds.AddCmd(cmd3);
+	cmds.AddCmd(cmd4);
+	cmds.AddCmd(cmd5);
+	cmds.AddCmd(cmd6);
+	cmds.AddCmd(cmd7);
+	cmds.AddCmd(cmd8);
+	cmds.AddCmd(cmd9);
+	cmds.AddCmd(cmd10);
+	cmds.AddCmd(cmd11);
+	cmds.AddCmd(cmd12);
+	cmds.AddCmd(cmd13);
 
-	experis::KeyVal keyVal2{std::string("loop"), 2};
-	experis::ValLable valLable2{std::string("char"), 2};
-	experis::OpLineLables opLineLables2{std::optional<experis::KeyVal>{keyVal2}, std::optional<experis::ValLable>{valLable2}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables2);
+	experis::from_trusted_Symbols symbolTable = experis::from_trusted_Symbols(cmds);
+	std::cout << symbolTable;
 
-	experis::OpLineLables opLineLables3{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables3);
+	experis::Key key = "loop";
+	std::optional<experis::Val> optnlVal = symbolTable.GetVal(key);
+	if (optnlVal.has_value())
+	{
+		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
+	}
+	else
+	{
+		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
+	}
 
-	experis::ValLable valLable4{std::string("one"), 4};
-	experis::OpLineLables opLineLables4{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{valLable4}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables4);
+	key = "one";
+	optnlVal = symbolTable.GetVal(key);
+	if (optnlVal.has_value())
+	{
+		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
+	}
+	else
+	{
+		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
+	}
 
-	experis::ValLable valLable5{std::string("char"), 5};
-	experis::OpLineLables opLineLables5{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{valLable5}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables5);
+	key = "two";
+	optnlVal = symbolTable.GetVal(key);
+	if (optnlVal.has_value())
+	{
+		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
+	}
+	else
+	{
+		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
+	}
 
-	experis::ValLable valLable6{std::string("max"), 6};
-	experis::OpLineLables opLineLables6{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{valLable6}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables6);
+	key = "char";
+	optnlVal = symbolTable.GetVal(key);
+	if (optnlVal.has_value())
+	{
+		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
+	}
+	else
+	{
+		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
+	}
 
-	experis::ValLable valLable7{std::string("end"), 7};
-	experis::OpLineLables opLineLables7{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{valLable7}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables7);
-
-	experis::ValLable valLable8{std::string("loop"), 8};
-	experis::OpLineLables opLineLables8{std::optional<experis::KeyVal>{}, std::optional<experis::ValLable>{valLable8}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables8);
-
-	experis::KeyVal keyVal9{std::string("end"), 9};
-	experis::OpLineLables opLineLables9{std::optional<experis::KeyVal>{keyVal9}, std::optional<experis::ValLable>{}};
-	untrusted_symbolsData.AddOpLineLables(opLineLables9);
-
-	std::cout << untrusted_symbolsData;
+	const std::string& outFileName = "First.sym";
+	experis::SymbolsToFile(outFileName, symbolTable);
 
 
+
+
+	// ------------------------------------------FROM RANANA--------------------------------------------------------------------------------//
+	//for(i = 0; i < NumOfCmds ; ++i) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
+	//                                                                                                                                      //
+	//lablKeye = Commans.At(i).GetLable() ==> optional<Key> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
+	//keyVal = lablKeye.has_value() ? std::optional<experis::KeyVal>{KeyVal{lablKeye.value(), i}} : std::optional<experis::KeyVal>{};       //
+	//                                                                                                                                      //
+	//adressKey = Commans.At(i).GetAdress() ==> optional<Key> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
+	//valLable = adressKey.has_value() ? std::optional<experis::ValLable>{KeyVal{adressKey.value(), i}} : std::optional<experis::KeyVal>{}; //
+	// -------------------------------------------------------------------------------------------------------------------------------------//
+	// experis::OpLineLables opLineLables{keyVal, valLable};                                                                                //
+	// -------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+	// ------------------------------------------TO RANANA--------------------------------------------------------------------------------//
+	// optional LableValue(key)
 
 	//========================================ACCHIEVED====================================================================================//
+	/*OUTPUT = > 
+	=2
+	@8
 
-	/* - OUTPUT - 
-	------------------------------------
-	====== Dictionary =======
-	[Key: loop --- Val: 2]
-	[Key: end --- Val: 9]
+	TXT
+	:end
+	=9
+	@7
 
-	====== ValLables =======
-	[Key: space --- @Line#: 0]
-	[Key: char --- @Line#: 1]
-	[Key: char --- @Line#: 2]
-	[Key: one --- @Line#: 4]
-	[Key: char --- @Line#: 5]
-	[Key: max --- @Line#: 6]
-	[Key: end --- @Line#: 7]
-	[Key: loop --- @Line#: 8]
+	DATA
+	:space
+	=10
+	@0
+
+	DATA
+	:one
+	=11
+	@4
+
+	DATA
+	:max
+	=12
+	@6
+
+	DATA
+	:char
+	=13
+	@1
+	@2
+	@5
+
 	*/
 
-
-	//========================================NEXT PHASE====================================================================================//
-
-	/*TO RECEIVE NEXT OUTPUT!!
-	-----------------------------------------------------------------------------------------------
-	-----------------------------------------------------------------------------------------------
-	====== @@@TEXT@@@ Dictionary =======          @@@ ====== DAT Dictionary =======@@@
-	[Key: loop --- Val: 2]                        @@@[Key: loop --- Val: 2]        @@@
-	[Key: end --- Val: 9]                         @@@[Key: end --- Val: 9]         @@@
-
-	====== ValLables =======
-	[Key: space --- @Line#: 0]
-	[Key: char --- @Line#: 1]
-	[Key: char --- @Line#: 2]
-	[Key: one --- @Line#: 4]
-	[Key: char --- @Line#: 5]
-	[Key: max --- @Line#: 6]
-	[Key: end --- @Line#: 7]
-	[Key: loop --- @Line#: 8]
-	*/
-
-
-	//=================================QUESTIONS TO DISCUSS====================================================================================//
-
-	//PHASE 3 -> to take ValLables and insert to TEXT dictionary and DAT Dictionary = = = SYMBOL TABLE
-	//Will fail if untrusted is not valid
-
-	// OR?????? TO devide into two mini phases: 3) checks validity + 4) creates SYMBOL TABLE from trusted symboldData 
 
 
 //========================================DONT FORGET====================================================================================//
@@ -106,4 +150,5 @@ int main()
 	// - check valid file.
 	// - asserts.
 	// - throw.
+	// - TESTS!!!
 }

@@ -29,15 +29,15 @@ const Val& KeyVal::GetVal() const
 	return this->m_val;
 }
 
-const bool operator==(const KeyVal& a_keyVal1, const KeyVal& a_keyVal2)
-{
-	return a_keyVal1.GetKey() == a_keyVal1.GetKey();
-}
-
-std::ostream& operator<<(std::ostream& a_os, const KeyVal& a_keyVal)
-{
-	a_os << "[Key: " << a_keyVal.GetKey() << " --- Val: " << a_keyVal.GetVal() << "]\n";
-	return a_os;
-}
+//const bool operator==(const KeyVal& a_keyVal1, const KeyVal& a_keyVal2)
+//{
+//	return a_keyVal1.GetKey() == a_keyVal1.GetKey();
+//}
+//
+//std::ostream& operator<<(std::ostream& a_os, const KeyVal& a_keyVal)
+//{
+//	a_os << "[Key: " << a_keyVal.GetKey() << " --- Val: " << a_keyVal.GetVal() << "]\n";
+//	return a_os;
+//}
 
 }//experis
