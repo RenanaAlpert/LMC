@@ -18,6 +18,7 @@ public:
 	~CommandText(); 
 
 	std::optional<Key> GetLable();	
+	std::optional<Key> GetOpcode();
 	std::optional<Key> GetAddress();	
 private:
 	
