@@ -8,10 +8,10 @@ Commands::Commands()
 {
 }
 
-Commands::Commands(const std::initializer_list<std::string&> a_listCommands)
+Commands::Commands(std::initializer_list<std::string> a_listCommands)
 	: m_commandsList{}
 {
-	for (std::string& s : a_listCommands)
+	for (std::string s : a_listCommands)
 	{
 		this->PushBack(s);
 	}
@@ -33,6 +33,11 @@ std::optional<Key> Commands::GetLable(size_t a_index)
 std::optional<Key> Commands::GetAddress(size_t a_index)
 {
 	return this->m_commandsList.at(a_index)->GetAddress();
+}
+
+size_t Commands::Size()
+{
+	return this->m_commandsList.size();
 }
 
 void Commands::PushBack(std::string& a_newItem)

@@ -4,11 +4,6 @@
 namespace experis
 {
 
-CommandText::CommandText(const std::string& a_lable, const std::string& a_opcode, const std::string& a_address)
-    : m_lable(a_lable), m_opcode(a_opcode), m_address(a_address)
-{
-}
-
 CommandText::CommandText(const std::string& a_command)
 {
     this->build(a_command);
@@ -54,21 +49,28 @@ std::vector<std::string> CommandText::Split(const std::string& a_toSplit, const 
     return partsOfString;
 }
 
+void CommandText::SetMembers(const std::string a_lable, const std::string a_opcode, const std::string a_address)
+{
+   this->m_lable = a_lable;
+   this->m_opcode = a_opcode;
+   this->m_address = a_address;
+}
+
 void CommandText::build(const std::string& a_command)
 {
     std::vector<std::string> partsOfCommand  = Split(a_command, ' ');
     assert(partsOfCommand.size() <= 3 && partsOfCommand.size() > 0);
     if (partsOfCommand.size() == 3)
     {
-        CommandText(partsOfCommand.at(0), partsOfCommand.at(1), partsOfCommand.at(2));
+        SetMembers(partsOfCommand.at(0), partsOfCommand.at(1), partsOfCommand.at(2));
     }
     else if (partsOfCommand.size() == 2)
     {
-        CommandText("", partsOfCommand.at(0), partsOfCommand.at(1));
+        SetMembers("", partsOfCommand.at(0), partsOfCommand.at(1));
     }
     else
     {
-        CommandText("", partsOfCommand.at(0), "");
+        SetMembers("", partsOfCommand.at(0), "");
     }
 }
 

@@ -11,7 +11,6 @@ class CommandText
 {
 public:
 	explicit CommandText() = delete;
-	explicit CommandText(const std::string& a_lable, const std::string& a_opcode, const std::string& a_address);
 	explicit CommandText(const std::string& a_command);
 	//explicit CommandText(const std::initializer_list<std::string> a_listCommands);
 	CommandText(const CommandText& a_other) = delete;
@@ -21,7 +20,9 @@ public:
 	std::optional<Key> GetLable();	
 	std::optional<Key> GetAddress();	
 private:
+	
 	std::vector<std::string> Split(const std::string& a_toSplit, const char a_howSplit);
+	void SetMembers(const std::string a_lable, const std::string a_opcode, const std::string a_address);
 	void build(const std::string& a_command);
 
 	Key m_lable;
