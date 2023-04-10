@@ -16,11 +16,11 @@ public:
 	Commands& operator=(const Commands& a_other) = delete;
 	~Commands();
 
-	std::optional<Key> GetLable(size_t a_index);
-	std::optional<Key> GetOpcode(size_t a_index);
-	std::optional<Key> GetAddress(size_t a_index);
-	CmdType GetType(size_t a_index);
-	size_t Size();
+	std::optional<Key> GetLable(size_t a_index) const;
+	std::optional<Key> GetOpcode(size_t a_index) const;
+	std::optional<Key> GetAddress(size_t a_index) const;
+	CmdType GetType(size_t a_index) const;
+	size_t Size() const;
 
 private:
 	void PushBack(std::string& a_newItem);

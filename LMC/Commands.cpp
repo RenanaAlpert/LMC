@@ -25,27 +25,27 @@ Commands::~Commands()
 	}
 }
 
-std::optional<Key> Commands::GetLable(size_t a_index)
+std::optional<Key> Commands::GetLable(size_t a_index) const
 {
 	return this->m_commandsList.at(a_index)->GetLable();
 }
 
-std::optional<Key> Commands::GetOpcode(size_t a_index)
+std::optional<Key> Commands::GetOpcode(size_t a_index) const
 {
 	return this->m_commandsList.at(a_index)->GetOpcode();
 }
 
-std::optional<Key> Commands::GetAddress(size_t a_index)
+std::optional<Key> Commands::GetAddress(size_t a_index) const
 {
 	return this->m_commandsList.at(a_index)->GetAddress();
 }
 
-CmdType Commands::GetType(size_t a_index) //TODO better switch
+CmdType Commands::GetType(size_t a_index) const//TODO better switch
 {
 	return this->m_commandsList.at(a_index)->GetOpcode() == "DAT" ? CmdType::DATA : CmdType::TXT;
 }
 
-size_t Commands::Size()
+size_t Commands::Size() const
 {
 	return this->m_commandsList.size();
 }
