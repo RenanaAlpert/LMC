@@ -29,14 +29,14 @@ Commands::Commands(std::vector<std::string> a_listCommands)
 
 Commands::~Commands()
 {
-	/*for (size_t i = this->m_commandsList.size() - 1 ; i >= 0 ; --i)
+	for (size_t i = 1 ; i <= m_commandsList.size() ; ++i)
 	{
-		delete this->m_commandsList.at(i);
-	}*/
-	while (m_commandsList.size() > 0)
+		delete this->m_commandsList.at(m_commandsList.size() - i);
+	}
+	/*while (m_commandsList.size() > 0)
 	{
 		delete this->m_commandsList.at(m_commandsList.size() - 1);
-	}
+	}*/
 }
 
 std::optional<Key> Commands::GetLable(size_t a_index) const
