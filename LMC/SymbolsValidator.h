@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Cmds.h"
+//#include "Cmds.h"
+#include "Commands.h"
 
 namespace experis
 {
 
-const bool IsValidSymbols(const Cmds& a_cmds);
+const bool IsValidSymbols(const Commands& a_commands);
 
 }//experis
