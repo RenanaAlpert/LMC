@@ -19,11 +19,11 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 	{
 		// THROW!!
 	}
-	else if(!IsCodeFileExists)
+	else if(!IsCodeFileExists())
 	{
 		//THROW!!
 	}
-	else if(!IsValidSymbols(Commands{}))
+	else if(false)//!IsValidSymbols(Commands{}))
 	{
 		//THROW!!
 	}
