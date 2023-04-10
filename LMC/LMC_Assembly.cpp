@@ -19,19 +19,11 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 	{
 		// THROW!!
 	}
-<<<<<<< Updated upstream
 	else if(!IsCodeFileExists())
 	{
 		//THROW!!
 	}
 	else if(false)//!IsValidSymbols(Commands{}))
-=======
-	else if(!IsCodeFileExists)
-	{
-		//THROW!!
-	}
-	else if(!IsValidSymbols(Commands{}))
->>>>>>> Stashed changes
 	{
 		//THROW!!
 	}
