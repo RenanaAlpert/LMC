@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Cmds.h"
+//#include "Cmds.h"
+#include "Commands.h"
 
 namespace experis
 {
 
 const bool ValueInVector(const Key& a_key, const std::vector<Key> a_lineLables);
-const bool IsValidSymbols(const Cmds& a_cmds);
+const bool IsValidSymbols(const Commands& a_cmds);
 
 }//experis

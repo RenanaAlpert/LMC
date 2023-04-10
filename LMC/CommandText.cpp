@@ -42,19 +42,35 @@ std::optional<Key> CommandText::GetAddress()
     return this->m_address;
 }
 
-std::vector<std::string> CommandText::Split(const std::string& a_toSplit, const char a_howSplit)
+bool CommandText::VecContain(const std::vector<char>& a_vec, const char a_c) const
+{
+    for ( char c : a_vec)
+    {
+        if (c == a_c)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+std::vector<std::string> CommandText::Split(const std::string& a_toSplit, const std::vector<char>& a_howSplit)
 {
     std::vector<std::string> partsOfString{};
 	int startIndex = 0, endIndex = 0;
     for (int i = 0; i <= a_toSplit.size(); i++) {
         
         // If we reached the end of the word or the end of the input.
-        if (a_toSplit[i] == a_howSplit || i == a_toSplit.size()) {
+        if (VecContain(a_howSplit, a_toSplit[i]) || i == a_toSplit.size()) {
             endIndex = i;
             std::string temp;
             temp.append(a_toSplit, startIndex, endIndex - startIndex);
-            partsOfString.push_back(temp);
             startIndex = endIndex + 1;
+            if (temp == "")
+            {
+                continue;
+            }
+            partsOfString.push_back(temp);
         }
     }
     return partsOfString;
@@ -67,26 +83,37 @@ void CommandText::SetMembers(const std::string a_lable, const std::string a_opco
    this->m_address = a_address;
 }
 
+std::string ToApperCase(const std::string& a_toUp)
+{
+    std::string toReturn{};
+    for (char c : a_toUp)
+    {
+        toReturn.push_back(c - 32);
+    }
+    return toReturn;
+}
+
 void CommandText::build(const std::string& a_command)
 {
-    std::vector<std::string> partsOfCommand  = Split(a_command, ' ');
+    std::vector<char> toSplit{' ', '\t', '\n'};
+    std::vector<std::string> partsOfCommand  = Split(a_command, toSplit);
     assert(partsOfCommand.size() <= 3 && partsOfCommand.size() > 0);
-    if (partsOfCommand.size() == 3 && ValueInVector(partsOfCommand.at(1), COMMAND))
+    if (partsOfCommand.size() == 3 && ValueInVector(ToApperCase(partsOfCommand.at(1)), COMMAND))
     {
         SetMembers(partsOfCommand.at(0), partsOfCommand.at(1), partsOfCommand.at(2));
     }
     else if (partsOfCommand.size() == 2)
     {
-        if (ValueInVector(partsOfCommand.at(0), COMMAND))
+        if (ValueInVector(ToApperCase(partsOfCommand.at(0)), COMMAND))
         {
             SetMembers("", partsOfCommand.at(0), partsOfCommand.at(1));
         }
-        else if (ValueInVector(partsOfCommand.at(1), COMMAND))
+        else if (ValueInVector(ToApperCase(partsOfCommand.at(1)), COMMAND))
         {
             SetMembers(partsOfCommand.at(0), partsOfCommand.at(1), "");
         }
     }
-    else if (ValueInVector(partsOfCommand.at(0), COMMAND))
+    else if (ValueInVector(ToApperCase(partsOfCommand.at(0)), COMMAND))
     {
         SetMembers("", partsOfCommand.at(0), "");
     }

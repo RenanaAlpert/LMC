@@ -8,6 +8,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExtentionsHandler", "ExtentionsHandler\ExtentionsHandler.vcxproj", "{3FF848C8-2170-457D-B790-42A80F1F955B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLMCToBinary", "TestLMCToBinary\TestLMCToBinary.vcxproj", "{5D4622E9-D251-4B23-AA7E-1A1022D68E48}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6BEE753-E652-4F7F-925A-A055B87F4104} = {B6BEE753-E652-4F7F-925A-A055B87F4104}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

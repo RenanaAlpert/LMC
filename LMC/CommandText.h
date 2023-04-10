@@ -22,7 +22,8 @@ public:
 	std::optional<Key> GetAddress();	
 private:
 	
-	std::vector<std::string> Split(const std::string& a_toSplit, const char a_howSplit);
+	bool VecContain(const std::vector<char>& a_vec, const char a_c) const;
+	std::vector<std::string> Split(const std::string& a_toSplit, const std::vector<char>& a_howSplit);
 	void SetMembers(const std::string a_lable, const std::string a_opcode, const std::string a_address);
 	void build(const std::string& a_command);
 

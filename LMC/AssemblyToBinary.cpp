@@ -51,9 +51,9 @@ std::vector<Command> TxtToBinary(std::vector<std::string>& a_text)
 	{
 		std::optional<Key> op = cmds.GetOpcode(i);
 		assert(op.has_value());
-		int opcode = GetOpcode(op.value());
+		size_t opcode = GetOpcode(op.value());
 		
-		int address = 0;
+		size_t address = 0;
 		std::optional<Key> val = cmds.GetAddress(i);
 		if (val.has_value())
 		{

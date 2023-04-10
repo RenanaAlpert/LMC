@@ -5,8 +5,6 @@
 namespace experis
 {
 
-namespace innerVlidatorFunctions
-{
 const bool ValueInVector(const Key& a_key, const std::vector<Key> a_lineLables)
 {
 	for(Key lineLable : a_lineLables)
@@ -18,19 +16,18 @@ const bool ValueInVector(const Key& a_key, const std::vector<Key> a_lineLables)
 	}
 	return false;
 }
-}//inerVlidatorFunctions
 
-const bool IsValidSymbols(const Cmds& a_cmds) //TODO cam be prittyer....
+const bool IsValidSymbols(const Commands& a_commands) //TODO cam be prittyer....
 {
 	std::vector<Key> lineLables{};
 
 	std::optional<Key> lineLable{};
-	for(size_t i = 0; i < a_cmds.GetLinesNumber(); ++i)
+	for(size_t i = 0; i < a_commands.Size(); ++i)
 	{
-		lineLable = a_cmds.GetCommand(i).GetLineLable();
+		lineLable = a_commands.GetLable(i);
 		if (lineLable.has_value())
 		{
-			if(innerVlidatorFunctions::ValueInVector(lineLable.value(), lineLables))
+			if(ValueInVector(lineLable.value(), lineLables))
 			{
 				return false;
 			}
@@ -39,12 +36,12 @@ const bool IsValidSymbols(const Cmds& a_cmds) //TODO cam be prittyer....
 	}
 
 	std::optional<Key> valLable{};
-	for(size_t i = 0; i < a_cmds.GetLinesNumber(); ++i)
+	for(size_t i = 0; i < a_commands.Size(); ++i)
 	{
-		valLable = a_cmds.GetCommand(i).GetValLable();
+		valLable = a_commands.GetAddress(i);
 		if (valLable.has_value())
 		{
-			if (!innerVlidatorFunctions::ValueInVector(valLable.value(), lineLables))
+			if (!ValueInVector(valLable.value(), lineLables))
 			{
 				return false;
 			}

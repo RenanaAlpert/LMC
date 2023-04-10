@@ -6,8 +6,13 @@
 namespace experis
 {
 
-from_trusted_Symbols::from_trusted_Symbols(const Cmds& a_cmds)
-	: m_symbolTable{InitializeFromCmds(a_cmds)}
+//from_trusted_Symbols::from_trusted_Symbols(const Cmds& a_cmds)
+//	: m_symbolTable{InitializeFromCmds(a_cmds)}
+//{
+//}
+
+from_trusted_Symbols::from_trusted_Symbols(const Commands& a_commands)
+	: m_symbolTable{InitializeFromCmds(a_commands)}
 {
 }
 
@@ -27,25 +32,55 @@ size_t from_trusted_Symbols::KeyDictIdx(const Key& a_key, const std::vector<Symb
 	assert(true);
 }
 
-std::vector<SymbolTableCell> from_trusted_Symbols::InitializeFromCmds(const Cmds& a_cmds) const
+//std::vector<SymbolTableCell> from_trusted_Symbols::InitializeFromCmds(const Cmds& a_cmds) const
+//{
+//	std::vector<SymbolTableCell> symbolTable = std::vector<SymbolTableCell>{};
+//
+//	for (size_t i = 0; i < a_cmds.GetLinesNumber(); ++i)
+//	{
+//		std::optional<Key> opKey = a_cmds.At(i).GetLineLable();
+//		if (opKey.has_value())
+//		{
+//			CmdType cmdType = a_cmds.At(i).GetCmdType();
+//			KeyVal keyVal = KeyVal(opKey.value(), i);
+//			SymbolTableCell symbolTableCell = SymbolTableCell(keyVal, cmdType);
+//			symbolTable.push_back(symbolTableCell);
+//		}
+//	}
+//
+//	for (size_t i = 0; i < a_cmds.GetLinesNumber(); ++i)
+//	{
+//		std::optional<Key> opKey = a_cmds.At(i).GetValLable();
+//		if (opKey.has_value())
+//		{
+//			size_t keyDictIdx = KeyDictIdx(opKey.value(), symbolTable);
+//			symbolTable.at(keyDictIdx).AddReferenceIdx(i);
+//		}
+//	}
+//
+//
+//	return symbolTable;
+//}
+
+std::vector<SymbolTableCell> from_trusted_Symbols::InitializeFromCmds(const Commands& a_commands) const
 {
 	std::vector<SymbolTableCell> symbolTable = std::vector<SymbolTableCell>{};
 
-	for (size_t i = 0; i < a_cmds.GetLinesNumber(); ++i)
+	for (size_t i = 0; i < a_commands.Size(); ++i)
 	{
-		std::optional<Key> opKey = a_cmds.At(i).GetLineLable();
+		std::optional<Key> opKey = a_commands.GetLable(i);
 		if (opKey.has_value())
 		{
-			CmdType cmdType = a_cmds.At(i).GetCmdType();
+			CmdType cmdType = a_commands.GetType(i);
 			KeyVal keyVal = KeyVal(opKey.value(), i);
 			SymbolTableCell symbolTableCell = SymbolTableCell(keyVal, cmdType);
 			symbolTable.push_back(symbolTableCell);
 		}
 	}
 
-	for (size_t i = 0; i < a_cmds.GetLinesNumber(); ++i)
+	for (size_t i = 0; i < a_commands.Size(); ++i)
 	{
-		std::optional<Key> opKey = a_cmds.At(i).GetValLable();
+		std::optional<Key> opKey = a_commands.GetAddress(i);
 		if (opKey.has_value())
 		{
 			size_t keyDictIdx = KeyDictIdx(opKey.value(), symbolTable);
@@ -56,6 +91,7 @@ std::vector<SymbolTableCell> from_trusted_Symbols::InitializeFromCmds(const Cmds
 
 	return symbolTable;
 }
+
 
 const std::optional<Val> from_trusted_Symbols::GetVal(const Key& a_key) const
 {

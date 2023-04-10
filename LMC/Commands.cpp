@@ -29,34 +29,38 @@ Commands::Commands(std::vector<std::string> a_listCommands)
 
 Commands::~Commands()
 {
+	/*for (size_t i = this->m_commandsList.size() - 1 ; i >= 0 ; --i)
+	{
+		delete this->m_commandsList.at(i);
+	}*/
 	while (m_commandsList.size() > 0)
 	{
 		delete this->m_commandsList.at(m_commandsList.size() - 1);
 	}
 }
 
-std::optional<Key> Commands::GetLable(size_t a_index)
+std::optional<Key> Commands::GetLable(size_t a_index) const
 {
 	return this->m_commandsList.at(a_index)->GetLable();
 }
 
-std::optional<Key> Commands::GetOpcode(size_t a_index)
+std::optional<Key> Commands::GetOpcode(size_t a_index) const
 {
 	return this->m_commandsList.at(a_index)->GetOpcode();
 }
 
-std::optional<Key> Commands::GetAddress(size_t a_index)
+std::optional<Key> Commands::GetAddress(size_t a_index) const
 {
 	return this->m_commandsList.at(a_index)->GetAddress();
 }
 
-CmdType Commands::GetType(size_t a_index) //TODO better switch
+CmdType Commands::GetType(size_t a_index) const//TODO better switch
 {
 	assert(this->m_commandsList.at(a_index)->GetOpcode().has_value());
 	return this->m_commandsList.at(a_index)->GetOpcode().value() == "DAT" ? CmdType::DATA : CmdType::TXT;
 }
 
-size_t Commands::Size()
+size_t Commands::Size() const
 {
 	return this->m_commandsList.size();
 }

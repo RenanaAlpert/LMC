@@ -9,13 +9,13 @@ namespace experis
 namespace inner
 {
 	//TODO think about non-exeptable cases of a_codeFilePath
-	std::Key RemoveExtention(const std::Key& a_codeFilePath);
+	std::string RemoveExtention(const std::string& a_codeFilePath);
 
 	//TODO think about un-valid argument cases
-	std::Key& AddExtention(std::Key&  a_codeFilePath, const std::Key& a_newExtention);
+	std::string& AddExtention(std::string&  a_codeFilePath, const std::string& a_newExtention);
 
 }//inner
  
-const std::Key ChangeExtention(const std::Key& a_codeFilePath, const std::Key& a_newExtention);
+const std::string ChangeExtention(const std::string& a_codeFilePath, const std::string& a_newExtention);
 
 }//experis
