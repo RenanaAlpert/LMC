@@ -1,4 +1,6 @@
 #include "CommandText.h"
+#include "SymbolsValidator.h"
+#include "AssemblyToBinary.h"
 #include <cassert>
 
 namespace experis
@@ -69,18 +71,26 @@ void CommandText::build(const std::string& a_command)
 {
     std::vector<std::string> partsOfCommand  = Split(a_command, ' ');
     assert(partsOfCommand.size() <= 3 && partsOfCommand.size() > 0);
-    if (partsOfCommand.size() == 3)
+    if (partsOfCommand.size() == 3 && ValueInVector(partsOfCommand.at(1), COMMAND))
     {
         SetMembers(partsOfCommand.at(0), partsOfCommand.at(1), partsOfCommand.at(2));
     }
     else if (partsOfCommand.size() == 2)
     {
-        SetMembers("", partsOfCommand.at(0), partsOfCommand.at(1));
+        if (ValueInVector(partsOfCommand.at(0), COMMAND))
+        {
+            SetMembers("", partsOfCommand.at(0), partsOfCommand.at(1));
+        }
+        else if (ValueInVector(partsOfCommand.at(1), COMMAND))
+        {
+            SetMembers(partsOfCommand.at(0), partsOfCommand.at(1), "");
+        }
     }
-    else
+    else if (ValueInVector(partsOfCommand.at(0), COMMAND))
     {
         SetMembers("", partsOfCommand.at(0), "");
     }
+    // TODO: throw exeption if there is not opcode
 }
 
 }

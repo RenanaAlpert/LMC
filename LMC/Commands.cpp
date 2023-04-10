@@ -1,4 +1,5 @@
 #include "Commands.h"
+#include <cassert>
 
 namespace experis
 {
@@ -9,6 +10,15 @@ Commands::Commands()
 }
 
 Commands::Commands(std::initializer_list<std::string> a_listCommands)
+	: m_commandsList{}
+{
+	for (std::string s : a_listCommands)
+	{
+		this->PushBack(s);
+	}
+}
+
+Commands::Commands(std::vector<std::string> a_listCommands)
 	: m_commandsList{}
 {
 	for (std::string s : a_listCommands)
@@ -42,7 +52,8 @@ std::optional<Key> Commands::GetAddress(size_t a_index)
 
 CmdType Commands::GetType(size_t a_index) //TODO better switch
 {
-	return this->m_commandsList.at(a_index)->GetOpcode() == "DAT" ? CmdType::DATA : CmdType::TXT;
+	assert(this->m_commandsList.at(a_index)->GetOpcode().has_value());
+	return this->m_commandsList.at(a_index)->GetOpcode().value() == "DAT" ? CmdType::DATA : CmdType::TXT;
 }
 
 size_t Commands::Size()
