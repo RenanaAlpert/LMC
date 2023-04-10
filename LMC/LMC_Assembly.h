@@ -17,7 +17,11 @@ private:
 	void trusted_CreateSymbolFile() const; //TODO asset sucsess
 	const bool IsValidArguments() const;
 	const bool IsCodeFileExists() const;
+<<<<<<< Updated upstream
+	//const bool IsCodeFileExists() const;
+=======
 	const bool IsCodeFileExists() const;
+>>>>>>> Stashed changes
 	//void CreateMachineCodeFile() const; //TODO asset sucsess
 
 	const int m_argc;
