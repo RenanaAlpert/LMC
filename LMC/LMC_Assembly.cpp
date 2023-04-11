@@ -1,5 +1,6 @@
 #include <string>
 #include <fstream>
+#include <cassert>
 #include "LMC_Assembly.h"
 #include "ExtentionsHandler.h"
 #include "from_trusted_Symbols.h"
@@ -8,8 +9,6 @@
 
 namespace experis
 {
-//const int m_argc;
-//const char **m_argv;
 
 LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 	: m_argc{a_argc}
@@ -19,50 +18,91 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 	{
 		// THROW!!
 	}
-	else if(!IsCodeFileExists())
+
+	if(!IsCodeFileExists())
 	{
 		//THROW!!
 	}
-	else if(false)//!IsValidSymbols(Commands{}))
+
+	const std::string codeFilePath = *(this->m_argv + 1);	
+	if(!IsValidSymbols(Commands(codeFilePath)))
 	{
 		//THROW!!
 	}
-	else if(false)//valid machine code
-	{
-		//THROW!!
-	}
-	else
-	{
-		trusted_CreateSymbolFile();
-		//CreateMachineCodeFile();
-	}
+
+	//if(false)//!valid machine code <==================================RENANA
+	//{
+	//	//THROW!!
+	//}
+
+
+	trusted_CreateSymbolFile();
+	//CreateMachineCodeFile(); <==========================================RENANA
 }
+
 LMC_Assembly::~LMC_Assembly()
 {
 }
 
 void LMC_Assembly::trusted_CreateSymbolFile() const
 {
-	//switch (this->m_argc)
-	//{
-	//case(2):
-	//{
-	//	const std::string codeFilePath = *(this->m_argv + 1);
-	//	const std::string newExtention = ".sym";
-	//	const std::string symbolsFilePath = ChangeExtention(codeFilePath, newExtention);
-	//	
-	//	SymbolsToFile(symbolsFilePath, from_trusted_Symbols(this->m_commands));*/
-	//}
-	//default:
-	//	break;
-	//}
+	const std::string inputCodeFilePath = *(this->m_argv + 1);
+
+	std::string outputSymbolFilePath{};
+	switch (this->m_argc)
+	{
+	case 2 || 3:
+	{
+		outputSymbolFilePath = ChangeExtention(inputCodeFilePath, ".sym");
+	}
+	case 4:
+	{
+		outputSymbolFilePath = *(this->m_argv + 3);
+	}
+	case 5:
+	{
+		outputSymbolFilePath = *(this->m_argv + 4);
+	}
+	default:
+		assert(true); 
+	}
+	SymbolsToFile(outputSymbolFilePath, from_trusted_Symbols(Commands(inputCodeFilePath)));
 }
 
-//void LMC_Assembly::CreateMachineCodeFile() const
+//void LMC_Assembly::CreateMachineCodeFile() const //<=====================================RENANA
 //{
+//  const std::string inputCodeFilePath = *(this->m_argv + 1);
+//
+//	std::string outputMachineCodeFilePath{};
+// 	switch (this->m_argc) 
+//	{
+//	case 2:
+//	{
+//		outputMachineCodeFilePath = ChangeExtention(inputCodeFilePath, ".lmc");
+//		// create TEXT file with the name outputMachineCodeFilePath
+//	}
+//	case 3:
+//	{
+//		outputMachineCodeFilePath = ChangeExtention(inputCodeFilePath, ".bin");
+//		// create BIN file with the name outputMachineCodeFilePath
+//	}
+//	case 4: 
+//	{
+//		outputMachineCodeFilePath = *(this->m_argv + 3);
+//		// create TEXT file with the name outputMachineCodeFilePath
+//	}
+// case 5: 
+//	{
+//		outputMachineCodeFilePath = *(this->m_argv + 4);
+//		// create BIN file with the name outputMachineCodeFilePath
+//	}
+//	default:
+//		assert(); //programming bug. should not get here because it was checked in the constructor
+//	}
+// 
 //}
 
-const bool LMC_Assembly::IsValidArguments() const //TODO think again
+const bool LMC_Assembly::IsValidArguments() const
 {
 	switch (this->m_argc)
 	{
@@ -83,7 +123,7 @@ const bool LMC_Assembly::IsValidArguments() const //TODO think again
 		return *(this->m_argv + 2) == std::string("/bin");
 	}
 	default:
-		return false; //TODO throw
+		return false;
 	}
 }
 
@@ -100,12 +140,6 @@ const bool LMC_Assembly::IsCodeFileExists() const
        return false;
    }
 }
-
-//const bool LMC_Assembly::IsCodeFileExists() const //TODO think again
-//{
-//}
-
-
 
 
 }//experis
