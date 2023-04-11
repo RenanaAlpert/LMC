@@ -6,110 +6,10 @@
 
 int main(int argc, const char **argv)
 {
-	/*experis::Cmds cmds;
-
-	experis::Cmd cmd0(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"space"});
-	experis::Cmd cmd1(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"char"});
-	experis::Cmd cmd2(experis::CmdType::TXT, std::optional<std::string>{"loop"}, std::optional<std::string>{"char"});
-	experis::Cmd cmd3(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{});
-	experis::Cmd cmd4(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"one"});
-	experis::Cmd cmd5(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"char"});
-	experis::Cmd cmd6(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"max"});
-	experis::Cmd cmd7(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"end"});
-	experis::Cmd cmd8(experis::CmdType::TXT, std::optional<std::string>{}, std::optional<std::string>{"loop"});
-	experis::Cmd cmd9(experis::CmdType::TXT, std::optional<std::string>{"end"}, std::optional<std::string>{});
-	experis::Cmd cmd10(experis::CmdType::DATA, std::optional<std::string>{"space"}, std::optional<std::string>{});
-	experis::Cmd cmd11(experis::CmdType::DATA, std::optional<std::string>{"one"}, std::optional<std::string>{});
-	experis::Cmd cmd12(experis::CmdType::DATA, std::optional<std::string>{"max"}, std::optional<std::string>{});
-	experis::Cmd cmd13(experis::CmdType::DATA, std::optional<std::string>{"char"}, std::optional<std::string>{});
-
-	cmds.AddCmd(cmd0);
-	cmds.AddCmd(cmd1);
-	cmds.AddCmd(cmd2);
-	cmds.AddCmd(cmd3);
-	cmds.AddCmd(cmd4);
-	cmds.AddCmd(cmd5);
-	cmds.AddCmd(cmd6);
-	cmds.AddCmd(cmd7);
-	cmds.AddCmd(cmd8);
-	cmds.AddCmd(cmd9);
-	cmds.AddCmd(cmd10);
-	cmds.AddCmd(cmd11);
-	cmds.AddCmd(cmd12);
-	cmds.AddCmd(cmd13);
-
-	experis::from_trusted_Symbols symbolTable = experis::from_trusted_Symbols(cmds);
-	std::cout << symbolTable;
-
-	experis::Key key = "loop";
-	std::optional<experis::Val> optnlVal = symbolTable.GetVal(key);
-	if (optnlVal.has_value())
-	{
-		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
-	}
-	else
-	{
-		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
-	}
-
-	key = "one";
-	optnlVal = symbolTable.GetVal(key);
-	if (optnlVal.has_value())
-	{
-		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
-	}
-	else
-	{
-		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
-	}
-
-	key = "two";
-	optnlVal = symbolTable.GetVal(key);
-	if (optnlVal.has_value())
-	{
-		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
-	}
-	else
-	{
-		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
-	}
-
-	key = "char";
-	optnlVal = symbolTable.GetVal(key);
-	if (optnlVal.has_value())
-	{
-		std::cout << "Key = "<< key <<" ::: Val = " << symbolTable.GetVal(key).value() << std::endl;
-	}
-	else
-	{
-		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
-	}
-
-	const std::string& outFileName = "First.sym";
-	experis::SymbolsToFile(outFileName, symbolTable);*/
-
-
-
-	/*experis::CommandText cmd0("        lda space");
-	experis::CommandText cmd1("        sta char");
-	experis::CommandText cmd2("loop    lda char");
-	experis::CommandText cmd3("        otc");
-	experis::CommandText cmd4("        add one");
-	experis::CommandText cmd5("        sta char");
-	experis::CommandText cmd6("        sub max");
-	experis::CommandText cmd7("        brz end");
-	experis::CommandText cmd8("        bra loop");
-	experis::CommandText cmd9("end     hlt");
-	experis::CommandText cmd10("space   dat 32");
-	experis::CommandText cmd11("one     dat 1");
-	experis::CommandText cmd12("max     dat 127");
-	experis::CommandText cmd13("char    dat");*/
-
 	
-	experis::Commands commands{"        lda space", "        sta char","loop    lda char","        otc","        add one","        sta char","        sub max","        brz end","        bra loop","end     hlt","space   dat 32","one     dat 1","max     dat 127","char    dat"};
-
+	experis::Commands commands("samplAsm1.txt");
 	experis::from_trusted_Symbols symbolTable = experis::from_trusted_Symbols(commands);
-	std::cout << symbolTable;
+	/*std::cout << symbolTable;
 
 	experis::Key key = "loop";
 	std::optional<experis::Val> optnlVal = symbolTable.GetVal(key);
@@ -153,8 +53,7 @@ int main(int argc, const char **argv)
 	else
 	{
 		std::cout << "Key = "<< key <<" ::: does not exist in cmds " << std::endl;
-	}
-
+	}*/
 	const std::string& outFileName = "First.sym";
 	experis::SymbolsToFile(outFileName, symbolTable);
 
