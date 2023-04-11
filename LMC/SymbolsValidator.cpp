@@ -27,11 +27,14 @@ const bool IsValidSymbols(const Commands& a_commands) //TODO cam be prittyer....
 		lineLable = a_commands.GetLable(i);
 		if (lineLable.has_value())
 		{
-			if(ValueInVector(lineLable.value(), lineLables))
+			if ((lineLable.value().at(0) >= 'a' && lineLable.value().at(0) <= 'z') || (lineLable.value().at(0) >= 'A' && lineLable.value().at(0) <= 'Z'))
 			{
-				return false;
+				if(ValueInVector(lineLable.value(), lineLables))
+				{
+					return false;
+				}
+				lineLables.push_back(lineLable.value());
 			}
-			lineLables.push_back(lineLable.value());
 		}
 	}
 
@@ -41,9 +44,12 @@ const bool IsValidSymbols(const Commands& a_commands) //TODO cam be prittyer....
 		valLable = a_commands.GetAddress(i);
 		if (valLable.has_value())
 		{
-			if (!ValueInVector(valLable.value(), lineLables))
+			if ((valLable.value().at(0) >= 'a' && valLable.value().at(0) <= 'z') || (valLable.value().at(0) >= 'A' && valLable.value().at(0) <= 'Z'))
 			{
-				return false;
+				if (!ValueInVector(valLable.value(), lineLables))
+				{
+					return false;
+				}
 			}
 		}
 	}
