@@ -22,6 +22,7 @@ private:
 	const std::string GetOutputMachinCodeFilePath() const;
 	void ArgumentsValidation();
 	void InputCodeFileExistenceCheck();
+	void CreateMachineCodeFile() const;
 
 	//void CreateMachineCodeFile() const; //TODO asset sucsess
 

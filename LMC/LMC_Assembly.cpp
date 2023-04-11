@@ -8,6 +8,8 @@
 #include "Commands.h"
 #include "SymbolsValidator.h"
 #include "Exceptions.h"
+#include "Using.h"
+#include "AssemblyToBinary.h"
 
 namespace experis
 {
@@ -47,29 +49,38 @@ void LMC_Assembly::trusted_CreateSymbolFile() const
 	SymbolsToFile(outputSymbolFilePath, from_trusted_Symbols(Commands(inputCodeFilePath)));
 }
 
-//void LMC_Assembly::CreateMachineCodeFile() const //<=====================================RENANA
-//{
-//  const std::string inputCodeFilePath = GetInputCodeFilePath();
-//	const std::string outputMachinCodeFilePath = GetOutputMachinCodeFilePath();
-// 
-// 	switch (this->m_argc) 
-//	{
-//	case 2:
-//	{
-//		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
-//	}
-//  case 4:
-//	{
-//		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
-//	}
-//	case 3 || 5:
-//	{
-//		// create from inputCodeFilePath a BIN file with the name outputMachinCodeFilePath // <=====RENENA
-//	}
-//	default:
-//		assert(true); //programming bug. should not get here because it was checked in the constructor
-//	}
-//}
+void LMC_Assembly::CreateMachineCodeFile() const //<=====================================RENANA
+{
+	const std::string inputCodeFilePath = GetInputCodeFilePath();
+	const std::string outputMachinCodeFilePath = GetOutputMachinCodeFilePath();
+ 
+ 	switch (this->m_argc) 
+	{
+	case 2:
+	{
+		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
+		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
+		std::vector<MechinLanguage> output = TxtToBinary(input);
+		WriteNumsToFile(outputMachinCodeFilePath, output);
+	}
+	case 4:
+	{
+		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
+		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
+		std::vector<MechinLanguage> output = TxtToBinary(input);
+		WriteNumsToFile(outputMachinCodeFilePath, output);
+	}
+	case 3 || 5:
+	{
+		// create from inputCodeFilePath a BIN file with the name outputMachinCodeFilePath // <=====RENENA
+		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
+		std::vector<MechinLanguage> output = TxtToBinary(input);
+		WriteNumToBinary(outputMachinCodeFilePath, output);
+	}
+	default:
+		assert(true); //programming bug. should not get here because it was checked in the constructor
+	}
+}
 
 const std::string LMC_Assembly::GetInputCodeFilePath() const
 {
@@ -183,6 +194,59 @@ void LMC_Assembly::InputCodeFileExistenceCheck()
    }
 }
 
+std::vector<std::string> ReadFromFile(const std::string& a_fileName)
+{
+	std::ifstream file{a_fileName};
+	std::string untrusrt_line{};
+	std::vector<std::string> commandsInFile{};
+	while (!file.eof())
+	{
+		std::getline(file, untrusrt_line);
+		if(!file.good() || file.eof())
+		{
+			break;
+		}
+		commandsInFile.push_back(untrusrt_line);
+	}
+	return commandsInFile;
+}
+
+void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile)
+{
+	std::ofstream outfile{a_output};
+	if(!outfile.is_open())
+	{
+		// TODO throw
+	}
+	for (MechinLanguage cmd : a_writeToFile)
+	{
+		if(cmd < 10)
+		{
+			outfile << "00" << cmd << "\n";
+		}
+		else if (cmd >=10 && cmd < 100)
+		{
+			outfile << "0" << cmd << "\n";
+		}
+		else
+		{
+			outfile << cmd << "\n";
+		}
+	}
+	outfile.close();
+}
+
+void WriteNumToBinary(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile)
+{
+	std::ofstream file{a_output, std::ios::binary};
+	//std::cout << "start fun";
+	for (MechinLanguage cmd : a_writeToFile)
+	{
+		file.put(char(cmd / 100));
+		file.put(char(cmd % 100));
+	}
+	file.close();
+}
 
 }//experis
 
