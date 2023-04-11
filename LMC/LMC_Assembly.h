@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include "Using.h"
 
 namespace experis
 {
@@ -29,6 +31,11 @@ private:
 	const int m_argc;
 	const char **m_argv;
 };
+
+std::vector<std::string> ReadFromFile(const std::string& a_fileName);
+void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile);
+void WriteNumToBinary(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile);
+
 
 }//experis
 

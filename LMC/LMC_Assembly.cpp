@@ -8,7 +8,6 @@
 #include "Commands.h"
 #include "SymbolsValidator.h"
 #include "Exceptions.h"
-#include "Using.h"
 #include "AssemblyToBinary.h"
 
 namespace experis
@@ -31,10 +30,9 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 	//{
 	//	//THROW!!
 	//}
-	std::cout << "HAHAHA\n";
 
 	trusted_CreateSymbolFile();
-	//CreateMachineCodeFile(); <==========================================RENANA
+	CreateMachineCodeFile();// <==========================================RENANA
 }
 
 LMC_Assembly::~LMC_Assembly()
@@ -51,34 +49,29 @@ void LMC_Assembly::trusted_CreateSymbolFile() const
 
 void LMC_Assembly::CreateMachineCodeFile() const //<=====================================RENANA
 {
+	assert(this->m_argc >= 2 && this->m_argc <=5);
+
 	const std::string inputCodeFilePath = GetInputCodeFilePath();
 	const std::string outputMachinCodeFilePath = GetOutputMachinCodeFilePath();
  
- 	switch (this->m_argc) 
-	{
-	case 2:
+	if(this->m_argc == 2 || this->m_argc == 4)
 	{
 		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
 		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
 		std::vector<MechinLanguage> output = TxtToBinary(input);
 		WriteNumsToFile(outputMachinCodeFilePath, output);
+		std::cout << "Wrote nums to file\n";
+		return;
 	}
-	case 4:
-	{
-		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
-		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
-		std::vector<MechinLanguage> output = TxtToBinary(input);
-		WriteNumsToFile(outputMachinCodeFilePath, output);
-	}
-	case 3 || 5:
-	{
+
+	if(this->m_argc == 3 || this->m_argc == 5)
+	{	
 		// create from inputCodeFilePath a BIN file with the name outputMachinCodeFilePath // <=====RENENA
 		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
 		std::vector<MechinLanguage> output = TxtToBinary(input);
 		WriteNumToBinary(outputMachinCodeFilePath, output);
-	}
-	default:
-		assert(true); //programming bug. should not get here because it was checked in the constructor
+		std::cout << "Wrote nums to binary\n";
+		return;
 	}
 }
 
@@ -89,35 +82,29 @@ const std::string LMC_Assembly::GetInputCodeFilePath() const
 
 const std::string LMC_Assembly::GetOutputSymbolFilePath() const
 {
+	assert(this->m_argc >= 2 && this->m_argc <=5);
+
 	const std::string inputCodeFilePath = GetInputCodeFilePath();
 
-	switch (this->m_argc)
-	{
-	case 2:
+	if (this->m_argc == 2 || this->m_argc == 3)
 	{
 		return ChangeExtention(inputCodeFilePath, ".sym");
 	}
-	case 3:
-	{
-		return ChangeExtention(inputCodeFilePath, ".sym");
-	}
-	case 4:
+
+	if (this->m_argc == 4)
 	{
 		return *(this->m_argv + 3);
 	}
-	case 5:
+
+	if (this->m_argc == 5)
 	{
 		return *(this->m_argv + 4);
-	}
-	default:
-		assert(true); 
-	}
-	return "";
+	}	
 }
 
 const std::string LMC_Assembly::GetOutputMachinCodeFilePath() const
 {
-	assert(this->m_argc == 2 || this->m_argc == 3 || this->m_argc == 4 || this->m_argc == 5);
+	assert(this->m_argc >= 2 && this->m_argc <=5);
 
 	const std::string inputCodeFilePath = GetInputCodeFilePath();
 
@@ -161,6 +148,7 @@ void LMC_Assembly::ArgumentsValidation()
 			MainArgumentsException error{"Second input argument is not \"/bin\" !!! "};
 			throw error;
 		}
+		break;
 	}
 	case 5:
 	{
@@ -169,6 +157,7 @@ void LMC_Assembly::ArgumentsValidation()
 			MainArgumentsException error{"Second input argument is not \"/bin\" !!! "};
 			throw error;
 		}
+		break;
 	}
 	case 4:
 	{
@@ -177,6 +166,7 @@ void LMC_Assembly::ArgumentsValidation()
 	default:
 		MainArgumentsException error{"Invalid number of input arguments !!! "};
 		throw error;
+		break;
 	}
 }
 
@@ -199,13 +189,13 @@ std::vector<std::string> ReadFromFile(const std::string& a_fileName)
 	std::ifstream file{a_fileName};
 	std::string untrusrt_line{};
 	std::vector<std::string> commandsInFile{};
-	while (!file.eof())
+	while (!file.eof() && file.good())
 	{
 		std::getline(file, untrusrt_line);
-		if(!file.good() || file.eof())
-		{
-			break;
-		}
+		//if(!file.good())// || file.eof())
+		//{
+		//	break;
+		//}
 		commandsInFile.push_back(untrusrt_line);
 	}
 	return commandsInFile;
@@ -220,13 +210,27 @@ void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLangua
 	}
 	for (MechinLanguage cmd : a_writeToFile)
 	{
-		if(cmd < 10)
+		/*if(cmd < 10)
 		{
 			outfile << "00" << cmd << "\n";
 		}
 		else if (cmd >=10 && cmd < 100)
 		{
 			outfile << "0" << cmd << "\n";
+		}
+		else
+		{
+			outfile << cmd << "\n";
+		}*/
+		if(cmd < 10)
+		{
+			int i =0;
+			outfile << i << i << cmd << "\n";
+		}
+		else if (cmd >=10 && cmd < 100)
+		{
+			int i =0;
+			outfile << i << cmd << "\n";
 		}
 		else
 		{
