@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <cassert>
+#include <iostream>
 #include "LMC_Assembly.h"
 #include "ExtentionsHandler.h"
 #include "from_trusted_Symbols.h"
@@ -17,7 +18,9 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 {
 	ArgumentsValidation();
 	InputCodeFileExistenceCheck();
-	if(!IsValidSymbols(Commands(GetInputCodeFilePath())))
+	Commands commands(GetInputCodeFilePath());
+	bool isvslsym = IsValidSymbols(commands);
+	if(!isvslsym)
 	{
 		throw SymbolsException{};
 	}
@@ -26,7 +29,7 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 	//{
 	//	//THROW!!
 	//}
-
+	std::cout << "HAHAHA\n";
 
 	trusted_CreateSymbolFile();
 	//CreateMachineCodeFile(); <==========================================RENANA
@@ -51,7 +54,11 @@ void LMC_Assembly::trusted_CreateSymbolFile() const
 // 
 // 	switch (this->m_argc) 
 //	{
-//	case 2 || 4:
+//	case 2:
+//	{
+//		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
+//	}
+//  case 4:
 //	{
 //		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
 //	}
@@ -75,7 +82,11 @@ const std::string LMC_Assembly::GetOutputSymbolFilePath() const
 
 	switch (this->m_argc)
 	{
-	case 2 || 3:
+	case 2:
+	{
+		return ChangeExtention(inputCodeFilePath, ".sym");
+	}
+	case 3:
 	{
 		return ChangeExtention(inputCodeFilePath, ".sym");
 	}
@@ -132,7 +143,15 @@ void LMC_Assembly::ArgumentsValidation()
 	{
 		break;
 	}
-	case 3 || 5:
+	case 3:
+	{
+		if (*(this->m_argv + 2) != std::string("/bin"))
+		{
+			MainArgumentsException error{"Second input argument is not \"/bin\" !!! "};
+			throw error;
+		}
+	}
+	case 5:
 	{
 		if (*(this->m_argv + 2) != std::string("/bin"))
 		{
@@ -152,8 +171,8 @@ void LMC_Assembly::ArgumentsValidation()
 
 void LMC_Assembly::InputCodeFileExistenceCheck()
 {
-   std::ifstream infile;
-   infile.open(*(this->m_argv + 2));
+   const std::string inputCodeFilePath = GetInputCodeFilePath();
+   std::ifstream infile(inputCodeFilePath);
    if(infile.is_open()) 
    {
 	   infile.close();

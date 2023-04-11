@@ -78,7 +78,8 @@ std::optional<Key> Commands::GetAddress(size_t a_index) const
 CmdType Commands::GetType(size_t a_index) const//TODO better switch
 {
 	assert(this->m_commandsList.at(a_index)->GetOpcode().has_value());
-	return this->m_commandsList.at(a_index)->GetOpcode().value() == "DAT" ? CmdType::DATA : CmdType::TXT;
+	return (this->m_commandsList.at(a_index)->GetOpcode().value() == "DAT" 
+		|| this->m_commandsList.at(a_index)->GetOpcode().value() == "dat") ? CmdType::DATA : CmdType::TXT;
 }
 
 size_t Commands::Size() const
