@@ -252,6 +252,14 @@ void WriteNumToBinary(const std::string& a_output, const std::vector<MechinLangu
 	file.close();
 }
 
+
+//ficted for tests
+std::ostream& operator<<(std::ostream& a_os, const LMC_Assembly& a_LMC_Assembly)
+{
+	a_os << "ficted for tests ::: std::ostream& operator<<(std::ostream& a_os, const LMC_Assembly& a_LMC_Assembly)\n";
+	return a_os;
+}
+
 }//experis
 
 

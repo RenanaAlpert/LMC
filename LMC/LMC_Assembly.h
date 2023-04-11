@@ -36,6 +36,8 @@ std::vector<std::string> ReadFromFile(const std::string& a_fileName);
 void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile);
 void WriteNumToBinary(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile);
 
+//ficted for tests
+std::ostream& operator<<(std::ostream& a_os, const LMC_Assembly& a_LMC_Assembly);
 
 }//experis
 
