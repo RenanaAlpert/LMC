@@ -135,6 +135,7 @@
     <ClCompile Include="Cmd.cpp" />
     <ClCompile Include="Cmds.cpp" />
     <ClCompile Include="CmdType.cpp" />
+    <ClCompile Include="CommandToNumber.cpp" />
     <ClCompile Include="from_trusted_Symbols.cpp" />
     <ClCompile Include="Commands.cpp" />
     <ClCompile Include="CommandText.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Cmd.h" />
     <ClInclude Include="Cmds.h" />
     <ClInclude Include="CmdType.h" />
+    <ClInclude Include="CommandToNumber.h" />
     <ClInclude Include="from_trusted_Symbols.h" />
     <ClInclude Include="LMC_Assembly.h" />
     <ClInclude Include="SymbolsValidator.h" />

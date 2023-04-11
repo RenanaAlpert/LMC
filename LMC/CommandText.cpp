@@ -1,6 +1,5 @@
 #include "CommandText.h"
 #include "SymbolsValidator.h"
-#include "AssemblyToBinary.h"
 #include <cassert>
 
 namespace experis

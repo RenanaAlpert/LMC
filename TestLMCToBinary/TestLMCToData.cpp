@@ -7,9 +7,9 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace TestLMCToBinary
+namespace TestLMCToData
 {
-	TEST_CLASS(TestLMCToBinary)
+	TEST_CLASS(TestLMCToData)
 	{
 	public:
 		
