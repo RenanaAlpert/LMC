@@ -50,8 +50,8 @@ void LMC_Assembly::trusted_CreateSymbolFile() const
 	//	const std::string codeFilePath = *(this->m_argv + 1);
 	//	const std::string newExtention = ".sym";
 	//	const std::string symbolsFilePath = ChangeExtention(codeFilePath, newExtention);
-	//	/*Commands commands{};
-	//	SymbolsToFile(symbolsFilePath, from_trusted_Symbols(commands));*/
+	//	
+	//	SymbolsToFile(symbolsFilePath, from_trusted_Symbols(this->m_commands));*/
 	//}
 	//default:
 	//	break;
@@ -91,10 +91,13 @@ const bool LMC_Assembly::IsCodeFileExists() const
 {
    std::ifstream infile;
    infile.open(*(this->m_argv + 2));
-   if(infile) {
-      return true;
-   } else {
-      return false;
+   if(infile.is_open()) 
+   {
+	   infile.close();
+       return true;
+   } else 
+   {
+       return false;
    }
 }
 
