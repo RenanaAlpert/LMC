@@ -1,5 +1,6 @@
 #include "Commands.h"
 #include <cassert>
+#include <fstream>
 
 namespace experis
 {
@@ -9,14 +10,14 @@ Commands::Commands()
 {
 }
 
-Commands::Commands(std::initializer_list<std::string> a_listCommands)
-	: m_commandsList{}
-{
-	for (std::string s : a_listCommands)
-	{
-		this->PushBack(s);
-	}
-}
+//Commands::Commands(std::initializer_list<std::string> a_listCommands)
+//	: m_commandsList{}
+//{
+//	for (std::string s : a_listCommands)
+//	{
+//		this->PushBack(s);
+//	}
+//}
 
 Commands::Commands(std::vector<std::string> a_listCommands)
 	: m_commandsList{}
@@ -25,6 +26,25 @@ Commands::Commands(std::vector<std::string> a_listCommands)
 	{
 		this->PushBack(s);
 	}
+}
+
+Commands::Commands(const std::string& a_codeFilePath)
+	: m_commandsList{}
+{
+	std::ifstream infile;
+	infile.open(a_codeFilePath);
+    if(infile.is_open()) 
+	{	std::string codeLine{};
+		while(std::getline(infile, codeLine))
+		{
+			this->PushBack(codeLine);
+		}
+        infile.close();
+    } 
+	else 
+	{
+        //TODO throw
+    }
 }
 
 Commands::~Commands()
@@ -43,6 +63,7 @@ std::optional<Key> Commands::GetLable(size_t a_index) const
 {
 	return this->m_commandsList.at(a_index)->GetLable();
 }
+
 
 std::optional<Key> Commands::GetOpcode(size_t a_index) const
 {
