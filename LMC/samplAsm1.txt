@@ -1,0 +1,10 @@
+        lda 1
+        sta 2
+loop    lda 2
+        otc
+        add 3
+        sta 4
+        sub 5
+        brz 6
+        bra loop
+end     hlt
