@@ -71,10 +71,13 @@ std::vector<SymbolTableCell> from_trusted_Symbols::InitializeFromCmds(const Comm
 		std::optional<Key> opKey = a_commands.GetLable(i);
 		if (opKey.has_value())
 		{
-			CmdType cmdType = a_commands.GetType(i);
-			KeyVal keyVal = KeyVal(opKey.value(), i);
-			SymbolTableCell symbolTableCell = SymbolTableCell(keyVal, cmdType);
-			symbolTable.push_back(symbolTableCell);
+			if ((opKey.value().at(0) >= 'a' && opKey.value().at(0) <= 'z') || (opKey.value().at(0) >= 'A' && opKey.value().at(0) <= 'Z'))
+			{
+				CmdType cmdType = a_commands.GetType(i);
+				KeyVal keyVal = KeyVal(opKey.value(), i);
+				SymbolTableCell symbolTableCell = SymbolTableCell(keyVal, cmdType);
+				symbolTable.push_back(symbolTableCell);
+			}
 		}
 	}
 
@@ -83,8 +86,11 @@ std::vector<SymbolTableCell> from_trusted_Symbols::InitializeFromCmds(const Comm
 		std::optional<Key> opKey = a_commands.GetAddress(i);
 		if (opKey.has_value())
 		{
-			size_t keyDictIdx = KeyDictIdx(opKey.value(), symbolTable);
-			symbolTable.at(keyDictIdx).AddReferenceIdx(i);
+			if ((opKey.value().at(0) >= 'a' && opKey.value().at(0) <= 'z') || (opKey.value().at(0) >= 'A' && opKey.value().at(0) <= 'Z'))
+			{
+				size_t keyDictIdx = KeyDictIdx(opKey.value(), symbolTable);
+				symbolTable.at(keyDictIdx).AddReferenceIdx(i);
+			}
 		}
 	}
 
