@@ -17,6 +17,11 @@ private:
 	void trusted_CreateSymbolFile() const; //TODO asset sucsess
 	const bool IsValidArguments() const;
 	const bool IsCodeFileExists() const;
+	const std::string GetInputCodeFilePath() const;
+	const std::string GetOutputSymbolFilePath() const;
+	const std::string GetOutputMachinCodeFilePath() const;
+	void ArgumentsValidation();
+	void InputCodeFileExistenceCheck();
 
 	//void CreateMachineCodeFile() const; //TODO asset sucsess
 
