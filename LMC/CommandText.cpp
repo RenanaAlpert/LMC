@@ -82,16 +82,6 @@ void CommandText::SetMembers(const std::string a_lable, const std::string a_opco
    this->m_address = a_address;
 }
 
-std::string ToApperCase(const std::string& a_toUp)
-{
-    std::string toReturn{};
-    for (char c : a_toUp)
-    {
-        toReturn.push_back(c - 32);
-    }
-    return toReturn;
-}
-
 void CommandText::build(const std::string& a_command)
 {
     std::vector<char> toSplit{' ', '\t', '\n'};

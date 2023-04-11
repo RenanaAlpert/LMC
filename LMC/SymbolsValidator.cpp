@@ -51,6 +51,22 @@ const bool IsValidSymbols(const Commands& a_commands) //TODO cam be prittyer....
 	return true;
 }
 
+std::string ToApperCase(const std::string& a_toUp)
+{
+    std::string toReturn{};
+    for (char c : a_toUp)
+    {
+		if (c >= 'a' && c <= 'z')
+		{
+			toReturn.push_back(c - 32);
+		}
+		else
+		{
+			toReturn.push_back(c);
+		}
+    }
+    return toReturn;
+}
 
 }//experis
 

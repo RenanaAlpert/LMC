@@ -1,6 +1,7 @@
 #include "AssemblyToBinary.h"
 #include "Commands.h"
 #include "from_trusted_Symbols.h"
+#include "SymbolsValidator.h"
 #include <cassert>
 
 namespace experis
@@ -56,7 +57,7 @@ size_t detail::FindOpcode(const std::string& a_opcode)
 {
 	for(size_t i = 0 ; i < CMDS.size() ; ++i)
 	{
-		if (CMDS.at(i).GetTxtCmd() == a_opcode)
+		if (CMDS.at(i).GetTxtCmd() == ToApperCase(a_opcode))
 		{
 			return CMDS.at(i).GetOpcode();
 		}
