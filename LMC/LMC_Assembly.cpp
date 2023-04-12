@@ -166,11 +166,11 @@ void LMC_Assembly::InputCodeFileExistenceCheck() const
    } 
    else 
    {
-		throw InputFileOpeningException{};
+	   throw InputFileOpeningException{"The file can't open!!", inputCodeFilePath};
    }
 }
 
-//RANANA==============> confirm changes
+//RANANA==============> confirm changes - no because else it's can stak and we don't check that the reading happend.
 std::vector<std::string> ReadFromFile(const std::string& a_fileName)
 {
 	std::ifstream file{a_fileName};
@@ -194,22 +194,11 @@ void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLangua
 	std::ofstream outfile{a_output};
 	if(!outfile.is_open())
 	{
-		// TODO throw
+		InputFileOpeningException error{"The file can't open!!", a_output};
+		throw error;
 	}
 	for (MechinLanguage cmd : a_writeToFile)
 	{
-		/*if(cmd < 10)
-		{
-			outfile << "00" << cmd << "\n";
-		}
-		else if (cmd >=10 && cmd < 100)
-		{
-			outfile << "0" << cmd << "\n";
-		}
-		else
-		{
-			outfile << cmd << "\n";
-		}*/
 		if(cmd < 10)
 		{
 			int i =0;

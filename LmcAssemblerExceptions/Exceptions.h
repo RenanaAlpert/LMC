@@ -29,10 +29,20 @@ struct AddressLableException : std::exception
 
 struct InputFileOpeningException : std::exception
 {
+    InputFileOpeningException(const char *a_msg, const std::string a_fileName);
+    const char *m_msg;
+    const std::string m_fileName;
 };
 
 struct SymbolsException : std::exception
 {
+};
+
+struct IllegalInputException : std::exception
+{
+    IllegalInputException(const char *a_msg, const std::string a_command);
+    const char *m_msg;
+    const std::string m_command;
 };
 
 }//experis

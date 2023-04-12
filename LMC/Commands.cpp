@@ -1,4 +1,5 @@
 #include "Commands.h"
+#include "Exceptions.h"
 #include <cassert>
 #include <fstream>
 
@@ -43,7 +44,8 @@ Commands::Commands(const std::string& a_codeFilePath)
     } 
 	else 
 	{
-        //TODO throw
+        InputFileOpeningException error{"The file can't open!!", a_codeFilePath};
+		throw error;
     }
 }
 

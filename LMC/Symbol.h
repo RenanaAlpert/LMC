@@ -11,7 +11,7 @@ namespace experis
 class Symbol
 {
 public:
-	friend std::ostream& operator<<(std::ostream& a_os, const Symbol& a_symbol); //TODO const this??
+	friend std::ostream& operator<<(std::ostream& a_os, const Symbol& a_symbol); //TODO const this - no because it isn't bellow to the class
 	
 	explicit Symbol() = delete;
 	explicit Symbol(const KeyVal& a_keyVal, const CmdSegment& a_cmdSegment);

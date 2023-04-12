@@ -1,5 +1,6 @@
 #include "CommandText.h"
 #include "HandyFuncs.h"
+#include "Exceptions.h"
 #include <cassert>
 
 namespace experis
@@ -101,12 +102,21 @@ void CommandText::build(const std::string& a_command)
         {
             SetMembers(partsOfCommand.at(0), partsOfCommand.at(1), "");
         }
+        else
+        {
+            IllegalInputException error{"Illegal input command", a_command};
+            throw error;
+        }
     }
     else if (ValueInVector(ToApperCase(partsOfCommand.at(0)), COMMAND))
     {
         SetMembers("", partsOfCommand.at(0), "");
     }
-    // TODO: throw exeption if there is not opcode
+    else
+    {
+        IllegalInputException error{"Illegal input command", a_command};
+        throw error;
+    }
 }
 
 }

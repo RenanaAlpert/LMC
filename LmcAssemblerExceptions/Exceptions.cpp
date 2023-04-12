@@ -21,4 +21,16 @@ AddressLableException::AddressLableException(const char *a_msg, const std::strin
 {
 }
 
+InputFileOpeningException::InputFileOpeningException(const char *a_msg, const std::string a_fileName)
+    : m_msg{a_msg}
+    , m_fileName{a_fileName}
+{
+}
+
+IllegalInputException::IllegalInputException(const char *a_msg, const std::string a_command)
+    : m_msg{a_msg}
+    , m_command{a_command}
+{
+}
+
 }//experis

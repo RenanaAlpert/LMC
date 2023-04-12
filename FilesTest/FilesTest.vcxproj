@@ -100,7 +100,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;C:\Users\IMOE001\source\repos\LMC\LMC\x64\Debug;C:\Users\IMOE001\source\repos\LMC\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;$(SolutionDir)\x64\Debug;$(SolutionDir)LMC\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>LMC_Assembly.obj;LMC_Defenitions.obj;AssemblyToBinary.obj;Commands.obj;CommandText.obj;CommandToNumber.obj;Symbols.obj;KeyVal.obj;OpLineLables.obj;HandyFuncs.obj;Symbol.obj;untrudted_SymbolTable.obj;untrusted_SymbolsData.obj;ValLable.obj;ExtentionsHandler.lib;LmcAssemblerExceptions.lib;TestLMCToBinary.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
