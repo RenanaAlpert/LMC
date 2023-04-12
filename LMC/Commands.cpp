@@ -75,11 +75,11 @@ std::optional<Key> Commands::GetAddress(size_t a_index) const
 	return this->m_commandsList.at(a_index)->GetAddress();
 }
 
-CmdType Commands::GetType(size_t a_index) const//TODO better switch
+CmdSegment Commands::GetSegment(size_t a_index) const//TODO better switch
 {
 	assert(this->m_commandsList.at(a_index)->GetOpcode().has_value());
 	return (this->m_commandsList.at(a_index)->GetOpcode().value() == "DAT" 
-		|| this->m_commandsList.at(a_index)->GetOpcode().value() == "dat") ? CmdType::DATA : CmdType::TXT;
+		|| this->m_commandsList.at(a_index)->GetOpcode().value() == "dat") ? CmdSegment::DATA : CmdSegment::TXT;
 }
 
 size_t Commands::Size() const

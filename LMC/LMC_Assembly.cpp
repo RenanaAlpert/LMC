@@ -2,13 +2,15 @@
 #include <fstream>
 #include <cassert>
 #include <iostream>
-#include "LMC_Assembly.h"
+
 #include "ExtentionsHandler.h"
-#include "from_trusted_Symbols.h"
+#include "Symbols.h"
 #include "Commands.h"
-#include "SymbolsValidator.h"
+#include "HandyFuncs.h"
 #include "Exceptions.h"
 #include "AssemblyToBinary.h"
+
+#include "LMC_Assembly.h"
 
 namespace experis
 {
@@ -19,60 +21,44 @@ LMC_Assembly::LMC_Assembly(const int a_argc, const char **a_argv)
 {
 	ArgumentsValidation();
 	InputCodeFileExistenceCheck();
-	Commands commands(GetInputCodeFilePath());
-	bool isvslsym = IsValidSymbols(commands);
-	if(!isvslsym)
-	{
-		throw SymbolsException{};
-	}
 
-	//if(false)//!valid machine code <==================================RENANA
-	//{
-	//	//THROW!!
-	//}
-
-	trusted_CreateSymbolFile();
-	CreateMachineCodeFile();// <==========================================RENANA
+	CreateSymbolFile();
+	CreateMachineCodeFile();
 }
 
 LMC_Assembly::~LMC_Assembly()
 {
 }
 
-void LMC_Assembly::trusted_CreateSymbolFile() const
+void LMC_Assembly::CreateSymbolFile() const
 {
 	const std::string inputCodeFilePath = GetInputCodeFilePath();
 	const std::string outputSymbolFilePath = GetOutputSymbolFilePath();
 
-	SymbolsToFile(outputSymbolFilePath, from_trusted_Symbols(Commands(inputCodeFilePath)));
+	SymbolsToFile(outputSymbolFilePath, Symbols(Commands(inputCodeFilePath)));
 }
 
-void LMC_Assembly::CreateMachineCodeFile() const //<=====================================RENANA
+void LMC_Assembly::CreateMachineCodeFile() const 
 {
 	assert(this->m_argc >= 2 && this->m_argc <=5);
 
 	const std::string inputCodeFilePath = GetInputCodeFilePath();
 	const std::string outputMachinCodeFilePath = GetOutputMachinCodeFilePath();
  
+	std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
+	std::vector<MechinLanguage> output = TxtToBinary(input);
+
 	if(this->m_argc == 2 || this->m_argc == 4)
 	{
-		// create from inputCodeFilePath a TEXT file with the name outputMachinCodeFilePath // <=====RENENA
-		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
-		std::vector<MechinLanguage> output = TxtToBinary(input);
 		WriteNumsToFile(outputMachinCodeFilePath, output);
 		std::cout << "Wrote nums to file\n";
-		return;
 	}
-
-	if(this->m_argc == 3 || this->m_argc == 5)
+	else if(this->m_argc == 3 || this->m_argc == 5)
 	{	
-		// create from inputCodeFilePath a BIN file with the name outputMachinCodeFilePath // <=====RENENA
-		std::vector<std::string> input = ReadFromFile(inputCodeFilePath);
-		std::vector<MechinLanguage> output = TxtToBinary(input);
 		WriteNumToBinary(outputMachinCodeFilePath, output);
 		std::cout << "Wrote nums to binary\n";
-		return;
 	}
+	return;
 }
 
 const std::string LMC_Assembly::GetInputCodeFilePath() const
@@ -120,11 +106,11 @@ const std::string LMC_Assembly::GetOutputMachinCodeFilePath() const
 	}
 	case 4: 
 	{
-		return *(this->m_argv + 3);
+		return *(this->m_argv + 2);
 	}
 	case 5: 
 	{
-		return *(this->m_argv + 4);
+		return *(this->m_argv + 3);
 	}
 	default:
 	{
@@ -133,7 +119,7 @@ const std::string LMC_Assembly::GetOutputMachinCodeFilePath() const
 	}
 }
 
-void LMC_Assembly::ArgumentsValidation() 
+void LMC_Assembly::ArgumentsValidation()  const
 {
 	switch (this->m_argc)
 	{
@@ -150,6 +136,10 @@ void LMC_Assembly::ArgumentsValidation()
 		}
 		break;
 	}
+	case 4:
+	{
+		break;
+	}
 	case 5:
 	{
 		if (*(this->m_argv + 2) != std::string("/bin"))
@@ -159,10 +149,6 @@ void LMC_Assembly::ArgumentsValidation()
 		}
 		break;
 	}
-	case 4:
-	{
-		break;
-	}
 	default:
 		MainArgumentsException error{"Invalid number of input arguments !!! "};
 		throw error;
@@ -170,7 +156,7 @@ void LMC_Assembly::ArgumentsValidation()
 	}
 }
 
-void LMC_Assembly::InputCodeFileExistenceCheck()
+void LMC_Assembly::InputCodeFileExistenceCheck() const
 {
    const std::string inputCodeFilePath = GetInputCodeFilePath();
    std::ifstream infile(inputCodeFilePath);
@@ -184,6 +170,7 @@ void LMC_Assembly::InputCodeFileExistenceCheck()
    }
 }
 
+//RANANA==============> confirm changes
 std::vector<std::string> ReadFromFile(const std::string& a_fileName)
 {
 	std::ifstream file{a_fileName};
@@ -201,6 +188,7 @@ std::vector<std::string> ReadFromFile(const std::string& a_fileName)
 	return commandsInFile;
 }
 
+//RANANA==============> confirm changes and do throw
 void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile)
 {
 	std::ofstream outfile{a_output};
@@ -243,7 +231,6 @@ void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLangua
 void WriteNumToBinary(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile)
 {
 	std::ofstream file{a_output, std::ios::binary};
-	//std::cout << "start fun";
 	for (MechinLanguage cmd : a_writeToFile)
 	{
 		file.put(char(cmd / 100));
@@ -252,8 +239,7 @@ void WriteNumToBinary(const std::string& a_output, const std::vector<MechinLangu
 	file.close();
 }
 
-
-//ficted for tests
+//Unreal function - just for tests
 std::ostream& operator<<(std::ostream& a_os, const LMC_Assembly& a_LMC_Assembly)
 {
 	a_os << "ficted for tests ::: std::ostream& operator<<(std::ostream& a_os, const LMC_Assembly& a_LMC_Assembly)\n";

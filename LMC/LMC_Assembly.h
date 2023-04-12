@@ -16,17 +16,17 @@ public:
 	~LMC_Assembly();
 
 private:
-	void trusted_CreateSymbolFile() const; //TODO asset sucsess
-	const bool IsValidArguments() const;
-	const bool IsCodeFileExists() const;
+	void ArgumentsValidation() const;
+	//const bool IsValidArguments() const;
+	void InputCodeFileExistenceCheck() const;
+	//const bool IsCodeFileExists() const;
+
 	const std::string GetInputCodeFilePath() const;
 	const std::string GetOutputSymbolFilePath() const;
 	const std::string GetOutputMachinCodeFilePath() const;
-	void ArgumentsValidation();
-	void InputCodeFileExistenceCheck();
-	void CreateMachineCodeFile() const;
 
-	//void CreateMachineCodeFile() const; //TODO asset sucsess
+	void CreateSymbolFile() const;
+	void CreateMachineCodeFile() const;
 
 	const int m_argc;
 	const char **m_argv;
@@ -36,11 +36,24 @@ std::vector<std::string> ReadFromFile(const std::string& a_fileName);
 void WriteNumsToFile(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile);
 void WriteNumToBinary(const std::string& a_output, const std::vector<MechinLanguage>& a_writeToFile);
 
-//ficted for tests
+//Unreal!! - Just for tests
 std::ostream& operator<<(std::ostream& a_os, const LMC_Assembly& a_LMC_Assembly);
 
 }//experis
 
 
+
+
+
+
+
+
+
+
+
+
+	//void trusted_CreateSymbolFile() const; //TODO asset sucsess
+	//void ArgumentsValidation();
+	//void InputCodeFileExistenceCheck();
 
 

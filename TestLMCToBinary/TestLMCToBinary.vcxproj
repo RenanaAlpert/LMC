@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;$(SolutionDir)LMC\x64\Debug;$(SolutionDir)x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AssemblyToBinary.obj;CmdType.obj;Commands.obj;CommandText.obj;CommandToNumber.obj;from_trusted_Symbols.obj;KeyVal.obj;LMC_Assembly.obj;SymbolsValidator.obj;SymbolTableCell.obj;ExtentionsHandler.lib;LmcAssemblerExceptions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AssemblyToBinary.obj;LMC_Defenitions.obj;Commands.obj;CommandText.obj;CommandToNumber.obj;Symbols.obj;KeyVal.obj;LMC_Assembly.obj;HandyFuncs.obj;Symbol.obj;ExtentionsHandler.lib;LmcAssemblerExceptions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

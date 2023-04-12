@@ -21,7 +21,7 @@ namespace experis
 			CommandToNumber{"INP", 901},
 			CommandToNumber{"OUT", 902},
 			CommandToNumber{"OTC", 922},
-			CommandToNumber{"DAT", 0}};
+			CommandToNumber{"DAT", 0}}; //Renana =======> Put in LMC_defenitions and handle duality
 
 		size_t FindOpcode(const std::string& a_opcode);
 	} // detail
