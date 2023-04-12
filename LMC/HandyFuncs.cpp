@@ -1,11 +1,11 @@
 #include <vector>
 #include "Using.h"
-#include "SymbolsValidator.h"
+#include "HandyFuncs.h"
 
 namespace experis
 {
 
-const bool ValueInVector(const Key& a_key, const std::vector<Key> a_lineLables)
+const bool ValueInVector(const Key& a_key, const std::vector<Key>& a_lineLables)
 {
 	for(Key lineLable : a_lineLables)
 	{
@@ -17,44 +17,9 @@ const bool ValueInVector(const Key& a_key, const std::vector<Key> a_lineLables)
 	return false;
 }
 
-const bool IsValidSymbols(const Commands& a_commands) //TODO cam be prittyer....
+const bool IsStringAlphaPrefix(const std::string& a_string)
 {
-	std::vector<Key> lineLables{};
-
-	std::optional<Key> lineLable{};
-	for(size_t i = 0; i < a_commands.Size(); ++i)
-	{
-		lineLable = a_commands.GetLable(i);
-		if (lineLable.has_value())
-		{
-			if ((lineLable.value().at(0) >= 'a' && lineLable.value().at(0) <= 'z') || (lineLable.value().at(0) >= 'A' && lineLable.value().at(0) <= 'Z'))
-			{
-				if(ValueInVector(lineLable.value(), lineLables))
-				{
-					return false;
-				}
-				lineLables.push_back(lineLable.value());
-			}
-		}
-	}
-
-	std::optional<Key> valLable{};
-	for(size_t i = 0; i < a_commands.Size(); ++i)
-	{
-		valLable = a_commands.GetAddress(i);
-		if (valLable.has_value())
-		{
-			if ((valLable.value().at(0) >= 'a' && valLable.value().at(0) <= 'z') || (valLable.value().at(0) >= 'A' && valLable.value().at(0) <= 'Z'))
-			{
-				if (!ValueInVector(valLable.value(), lineLables))
-				{
-					return false;
-				}
-			}
-		}
-	}
-
-	return true;
+	return ((a_string.at(0) >= 'a' && a_string.at(0) <= 'z') || (a_string.at(0) >= 'A' && a_string.at(0) <= 'Z'));
 }
 
 std::string ToApperCase(const std::string& a_toUp)
@@ -77,6 +42,68 @@ std::string ToApperCase(const std::string& a_toUp)
 }//experis
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//const bool IsValidSymbols(const Commands& a_commands) //TODO cam be prittyer....
+//{
+//	std::vector<Key> lineLables{};
+//
+//	std::optional<Key> lineLable{};
+//	for(size_t i = 0; i < a_commands.Size(); ++i)
+//	{
+//		lineLable = a_commands.GetLable(i);
+//		if (lineLable.has_value())
+//		{
+//			if (IsStringAlphaPrefix(lineLable.value()))
+//			{
+//				if(ValueInVector(lineLable.value(), lineLables))
+//				{
+//					return false;
+//				}
+//				lineLables.push_back(lineLable.value());
+//			}
+//		}
+//	}
+//
+//	std::optional<Key> valLable{};
+//	for(size_t i = 0; i < a_commands.Size(); ++i)
+//	{
+//		valLable = a_commands.GetAddress(i);
+//		if (valLable.has_value())
+//		{
+//			if (IsStringAlphaPrefix(lineLable.value()))
+//			{
+//				if (!ValueInVector(valLable.value(), lineLables))
+//				{
+//					return false;
+//				}
+//			}
+//		}
+//	}
+//
+//	return true;
+//}
 
 
 //#include <vector>

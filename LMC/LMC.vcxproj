@@ -132,25 +132,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyToBinary.cpp" />
-    <ClCompile Include="CmdType.cpp" />
+    <ClCompile Include="LMC_Defenitions.cpp" />
     <ClCompile Include="CommandToNumber.cpp" />
-    <ClCompile Include="from_trusted_Symbols.cpp" />
+    <ClCompile Include="Symbols.cpp" />
     <ClCompile Include="Commands.cpp" />
     <ClCompile Include="CommandText.cpp" />
     <ClCompile Include="KeyVal.cpp" />
     <ClCompile Include="LMC.cpp" />
     <ClCompile Include="LMC_Assembly.cpp" />
-    <ClCompile Include="SymbolsValidator.cpp" />
-    <ClCompile Include="SymbolTableCell.cpp" />
+    <ClCompile Include="HandyFuncs.cpp" />
+    <ClCompile Include="Symbol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssemblyToBinary.h" />
-    <ClInclude Include="CmdType.h" />
+    <ClInclude Include="LMC_Defenitions.h" />
     <ClInclude Include="CommandToNumber.h" />
-    <ClInclude Include="from_trusted_Symbols.h" />
+    <ClInclude Include="Symbols.h" />
     <ClInclude Include="LMC_Assembly.h" />
-    <ClInclude Include="SymbolsValidator.h" />
-    <ClInclude Include="SymbolTableCell.h" />
+    <ClInclude Include="HandyFuncs.h" />
+    <ClInclude Include="Symbol.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="Using.h" />
     <ClInclude Include="KeyVal.h" />

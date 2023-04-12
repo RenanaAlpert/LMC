@@ -21,16 +21,16 @@
     <ClCompile Include="KeyVal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SymbolsValidator.cpp">
+    <ClCompile Include="HandyFuncs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="from_trusted_Symbols.cpp">
+    <ClCompile Include="Symbols.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SymbolTableCell.cpp">
+    <ClCompile Include="Symbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CmdType.cpp">
+    <ClCompile Include="LMC_Defenitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Commands.cpp">
@@ -45,6 +45,9 @@
     <ClCompile Include="AssemblyToBinary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommandToNumber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyVal.h">
@@ -53,16 +56,16 @@
     <ClInclude Include="Using.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CmdType.h">
+    <ClInclude Include="LMC_Defenitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SymbolsValidator.h">
+    <ClInclude Include="HandyFuncs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="from_trusted_Symbols.h">
+    <ClInclude Include="Symbols.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SymbolTableCell.h">
+    <ClInclude Include="Symbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClCompile Include="CommandText.cpp">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AssemblyToBinary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandToNumber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "CommandText.h"
-#include "CmdType.h"
+#include "LMC_Defenitions.h"
 
 namespace experis
 {
@@ -21,7 +21,7 @@ public:
 	std::optional<Key> GetLable(size_t a_index) const;
 	std::optional<Key> GetOpcode(size_t a_index) const;
 	std::optional<Key> GetAddress(size_t a_index) const;
-	CmdType GetType(size_t a_index) const;
+	CmdSegment GetSegment(size_t a_index) const;
 	size_t Size() const;
 
 private:

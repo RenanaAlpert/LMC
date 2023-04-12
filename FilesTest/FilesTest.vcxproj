@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;C:\Users\IMOE001\source\repos\LMC\LMC\x64\Debug;C:\Users\IMOE001\source\repos\LMC\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LMC_Assembly.obj;CmdType.obj;AssemblyToBinary.obj;Commands.obj;CommandText.obj;CommandToNumber.obj;from_trusted_Symbols.obj;KeyVal.obj;OpLineLables.obj;SymbolsValidator.obj;SymbolTableCell.obj;untrudted_SymbolTable.obj;untrusted_SymbolsData.obj;ValLable.obj;ExtentionsHandler.lib;LmcAssemblerExceptions.lib;TestLMCToBinary.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LMC_Assembly.obj;LMC_Defenitions.obj;AssemblyToBinary.obj;Commands.obj;CommandText.obj;CommandToNumber.obj;Symbols.obj;KeyVal.obj;OpLineLables.obj;HandyFuncs.obj;Symbol.obj;untrudted_SymbolTable.obj;untrusted_SymbolsData.obj;ValLable.obj;ExtentionsHandler.lib;LmcAssemblerExceptions.lib;TestLMCToBinary.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

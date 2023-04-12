@@ -1,7 +1,7 @@
 #include "AssemblyToBinary.h"
 #include "Commands.h"
-#include "from_trusted_Symbols.h"
-#include "SymbolsValidator.h"
+#include "Symbols.h"
+#include "HandyFuncs.h"
 #include <cassert>
 
 namespace experis
@@ -22,7 +22,7 @@ bool IsDigit(Key a_address)
 std::vector<MechinLanguage> TxtToBinary(std::vector<std::string>& a_text)
 {
 	Commands cmds{a_text};
-	from_trusted_Symbols convertTable{cmds};
+	Symbols convertTable{cmds};
 	std::vector<MechinLanguage> binaryCmds{};
 	for (size_t i = 0 ; i < cmds.Size() ; ++i)
 	{
@@ -40,7 +40,7 @@ std::vector<MechinLanguage> TxtToBinary(std::vector<std::string>& a_text)
 			}
 			else
 			{
-				std::optional<size_t> mayAddress = convertTable.GetVal(val.value());
+				std::optional<size_t> mayAddress = convertTable.GetLableVal(val.value());
 				if(mayAddress.has_value())
 				{
 					address = mayAddress.value();

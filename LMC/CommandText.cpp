@@ -1,5 +1,5 @@
 #include "CommandText.h"
-#include "SymbolsValidator.h"
+#include "HandyFuncs.h"
 #include <cassert>
 
 namespace experis
