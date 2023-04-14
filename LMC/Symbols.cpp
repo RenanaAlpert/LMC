@@ -125,7 +125,7 @@ void SymbolsToFile(const std::string& a_outFileName, const Symbols& a_symbols)
 	if (!fs.is_open())
 	{
 		std::cout << "Failed to open file - " << a_outFileName << " for writing!!!" << std::endl;
-		throw InputFileOpeningException{};
+		throw InputFileOpeningException{"Input file coulf not be opened", a_outFileName};
 	}
 	else
 	{
